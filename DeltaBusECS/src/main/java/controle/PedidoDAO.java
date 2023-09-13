@@ -31,7 +31,6 @@ public class PedidoDAO implements InterfacePedido{
 			try {
 				
 				PreparedStatement ps = con.prepareStatement(query);
-
 				
 				ResultSet rs = ps.executeQuery();
 				while (rs.next()) {
@@ -68,12 +67,13 @@ public class PedidoDAO implements InterfacePedido{
 
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setInt(1, pedido.getVeiculo());
+			//ps.setInt (1,pedido .getId_Pedidos());
 			//ps.setLong(2, pedido.getDataCompra());
 			ps.setDouble(3, pedido.getValorPago());
 			ps.setString(4, pedido.getTipoPagamento());
 			ps.setInt(5, pedido.getVeiculo());
 			ps.setString(6, pedido.getCliente());
+			
 
 			ps.executeUpdate();
 
@@ -88,9 +88,27 @@ public class PedidoDAO implements InterfacePedido{
 
 	@Override
 	public boolean excluirPedido(Pedido pedido) {
-		
+		Conexao c = Conexao.getInstacia();
+		Connection con = c.conectar();
+
+		String query = "DELETE FROM Cliente\r\n  WHERE Cpf = ?";
+
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			//ps.setDouble(1, pedido.getpedido());
+			ps.executeUpdate();
+
+			c.fecharConexao();
+			return true;
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
 		return false;
 	}
+
 
 	@Override
 	public boolean alterarPedido(Pedido pedido) {
