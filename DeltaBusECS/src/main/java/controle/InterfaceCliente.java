@@ -6,7 +6,7 @@ public interface InterfaceCliente {
 
 	public boolean inserirCliente(Cliente cliente);
 
-	public boolean deletarCliente(Cliente cliente);
+	public boolean excluirCliente(Cliente cliente);
 
-	public Cliente alterarCliente(Cliente cliente);
+	public Cliente atualizarCliente(Cliente cliente);
 }

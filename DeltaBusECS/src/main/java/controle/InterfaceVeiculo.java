@@ -9,7 +9,7 @@ public interface InterfaceVeiculo {
 
 	public boolean excluirVeiculo(Veiculo veiculo);
 
-	public boolean alterarVeiculo(Veiculo veiculo);
+	public boolean atualizarVeiculo(Veiculo veiculo);
 	
 	
 }

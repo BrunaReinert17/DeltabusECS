@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import modelo.Cliente;
 import modelo.Endereco;
+import modelo.Usuario;
 import modelo.Veiculo;
 
 public class VeiculoDAO {
@@ -91,5 +92,76 @@ public class VeiculoDAO {
 		        }
 		        return valida != 0;
 		    }
+		
+		
+		
+		public boolean excluirVeiculo(Veiculo veiculo) {
+			
+			Conexao c = Conexao.getInstacia();
+			Connection con = c.conectar();
+			
+			String query = "DELETE FROM Veiculo\r\n  WHERE idVeiculo = ?";
+			
+			try {
+				PreparedStatement ps = con.prepareStatement(query);
+				ps.setDouble(1, veiculo.getIdVeiculo());
+				ps.executeUpdate();
+				
+				c.fecharConexao();
+				return true;
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		
+		public boolean atualizarVeiculo(Veiculo veiculo) {
+			
+			Conexao c = Conexao.getInstacia();
+			Connection con = c.conectar();
+			
+			
+			String query = "UPDATE Endereco\r\n   SET" 
+					+ "Marca = ?\r\n" + "Modelo = ?" + "Preco = ?" + " Acessorios = ?" + "Uf = ? ,  WHERE cep = ?";
+			try {
+				PreparedStatement ps = con.prepareStatement(query);
+				ps.setString(1, veiculo.getMarca());
+				ps.setString(2, veiculo.getModelo());
+				ps.setDouble(3, veiculo.getPreco());
+				//ps.setLocalDate(4, veiculo.getAno());
+				ps.setString(5, veiculo.getAcessorios());
+				ps.setInt(6, veiculo.getLotacao());
+				ps.setString(7, veiculo.getPlaca());
+				ps.setString(8, veiculo.getRenavam());
+				ps.setString(9, veiculo.getCor());
+				ps.setString(10, veiculo.getTipoFrota());
+				ps.setInt(11, veiculo.getKmveiculo());
+				ps.setString(12, veiculo.getTipoCombustivel());
+				//ps.setBoolean(13, veiculo.getSituacao());
+				ps.setLong(14, veiculo.getIdVeiculo());
+				
+				
+				
+				
+				
+				ps.executeUpdate();
+				
+				c.fecharConexao();
+				return true;
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				c.fecharConexao();
+			}
+			
+			return false;
+		}
+		
+		
+		
 	    
 }

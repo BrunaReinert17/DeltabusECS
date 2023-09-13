@@ -10,5 +10,5 @@ public interface InterfaceEndereco {
 
 	public boolean excluirEndereco(Endereco endereco);
 
-	public boolean alterarEndereco(Endereco endereco);
+	public boolean atualizarEndereco(Endereco endereco);
 }

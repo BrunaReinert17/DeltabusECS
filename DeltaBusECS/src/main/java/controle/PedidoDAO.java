@@ -88,13 +88,13 @@ public class PedidoDAO implements InterfacePedido{
 
 	@Override
 	public boolean excluirPedido(Pedido pedido) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	@Override
 	public boolean alterarPedido(Pedido pedido) {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
 	 

@@ -87,15 +87,61 @@ public class ClienteDAO implements InterfaceCliente {
 	
 
 	@Override
-	public boolean deletarCliente(Cliente cliente) {
+	public boolean excluirCliente(Cliente cliente) {
+		
+		Conexao c = Conexao.getInstacia();
+		Connection con = c.conectar();
+		
+String query = "DELETE FROM Cliente\r\n  WHERE Cpf = ?";
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setDouble(1, cliente.getCpf());
+			ps.executeUpdate();
+			
+			c.fecharConexao();
+			return true;
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 		
 		return false;
 	}
 
-	@Override
-	public Cliente alterarCliente(Cliente cliente) {
+
+	public Cliente atualizarCliente(Cliente cliente) {
+		
+		Conexao c = Conexao.getInstacia();
+		Connection con = c.conectar();
+		
+		
+		String query = "UPDATE Cliente\r\n   SET" 
+				+ "nome = ?\r\n" + "numeroTelefone = ?" + "email = ?" + "cnpj = ?" + " endereco = ?,  WHERE cpf = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, cliente.getNome());
+			ps.setLong(2, cliente.getNumeroTelefone());
+			ps.setString(3, cliente.getEmail());
+			ps.setLong(3, cliente.getCnpj());
+			// ps.setendereco(4, cliente.getEndereco());
+			
+			
+			ps.executeUpdate();
+			
+			c.fecharConexao();
+			// return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			c.fecharConexao();
+		}
 		
 		return null;
 	}
+	
+	
 
 }

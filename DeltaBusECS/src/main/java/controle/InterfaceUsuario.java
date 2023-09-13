@@ -6,9 +6,9 @@ public interface InterfaceUsuario {
 
 	public boolean inserirUsuario(Usuario usuario);
 
-	public boolean deletarUsuario(Usuario usuario);
+	public boolean excluirUsuario(Usuario usuario);
 
-	public Usuario alterarUsuario(Usuario usuario);
+	public boolean atualizarUsuario(Usuario usuario);
 
 	public Usuario selecionar(Usuario usuarioModelo);
 

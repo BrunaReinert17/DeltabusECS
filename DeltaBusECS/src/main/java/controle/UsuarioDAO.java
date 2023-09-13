@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import modelo.Pedido;
 import modelo.Usuario;
 
 public class UsuarioDAO implements InterfaceUsuario {
@@ -38,11 +39,28 @@ public class UsuarioDAO implements InterfaceUsuario {
         return valida != 0;
     }
 
-    @Override
-    public boolean deletarUsuario(Usuario usuario) {
-        // Implemente a exclusão do usuário aqui
-        return false;
-    }
+public boolean excluirUsuario(Usuario usuario) {
+    	
+    	Conexao c = Conexao.getInstacia();
+		Connection con = c.conectar();
+		
+String query = "DELETE FROM Usuario\r\n  WHERE idUsuario = ?";
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setFloat(1, usuario.getIdUsuario());
+			ps.executeUpdate();
+			
+			c.fecharConexao();
+			return true;
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 
     @Override
     public Usuario selecionar (Usuario usuarioModelo) {
@@ -72,9 +90,37 @@ public class UsuarioDAO implements InterfaceUsuario {
     }
 
     @Override
-    public Usuario alterarUsuario(Usuario usuario) {
-        // Implemente a atualização do usuário aqui
-        return null;
+    public boolean atualizarUsuario(Usuario usuario) {
+    	
+    	Conexao c = Conexao.getInstacia();
+		Connection con = c.conectar();
+		
+		
+		String query = "UPDATE Endereco\r\n   SET" 
+				+ "Email = ?\r\n" + "Senha = ?" + "Cargo = ? ,  WHERE idUsuario = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, usuario.getEmail());
+			ps.setString(2, usuario.getSenha());
+			ps.setString(3, usuario.getCargo());
+			ps.setLong(4, usuario.getIdUsuario());
+			
+			
+			
+			
+			
+			ps.executeUpdate();
+			
+			c.fecharConexao();
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			c.fecharConexao();
+		}
+       
+        return false;
     }
 
     public ArrayList<Usuario> listar() {
@@ -141,4 +187,7 @@ public class UsuarioDAO implements InterfaceUsuario {
 
 		return null;
 	}
+    
+    
+	
 }
