@@ -60,21 +60,63 @@ public class FuncionarioDAO implements InterfaceFuncionario {
 		} finally {
 			con.fecharConexao();
 			return (valida == 0 ? false : true);
-
 		}
 
 	}
 
 	@Override
 	public boolean deletarFuncionario(Funcionario funcionario) {
-		// TODO Auto-generated method stub
+		Conexao c = Conexao.getInstacia();
+		Connection con = c.conectar();
+
+		String query = "DELETE FROM Funcionario\r\n  WHERE Cep = ?";
+
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setFloat(1, funcionario.getCpf());
+			ps.executeUpdate();
+
+			c.fecharConexao();
+			return true;
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	@Override
-	public Funcionario alterarFuncionario(Funcionario funcionario) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean alterarFuncionario(Funcionario funcionario) {
+		
+		Conexao c = Conexao.getInstacia();
+		Connection con = c.conectar();
+		
+		
+		String query = "UPDATE Funcionario\r\n   SET" 
+				+ "nome = ?\r\n" + "dataNascimento = ?" + "genero = ?" + " numerotelefone = ?" + "email = ?"+"Usuario_idUsuario = ?"+"endereco_cep = ? ,  WHERE cpf = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			
+			ps.setDouble(1, funcionario.getCpf());
+			ps.setString(2, funcionario.getNome());
+			ps.setDate(3, java.sql.Date.valueOf(funcionario.getDatanasci()));
+			ps.setString(4, funcionario.getGenero());
+			ps.setString(5, funcionario.getNumeroTelefone());
+			ps.setLong(6, funcionario.getUsuario().getIdUsuario());
+			ps.setLong(7, funcionario.getEndereco().getCep());
+			ps.executeUpdate();
+			
+			c.fecharConexao();
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			c.fecharConexao();
+		}
+		
+		return false;
 	}
 
 	public ArrayList<Funcionario> consultarTodos() {
@@ -90,7 +132,7 @@ public class FuncionarioDAO implements InterfaceFuncionario {
 				Funcionario funcionario = new Funcionario();
 				Endereco endereco = new Endereco();
 				Usuario usuario = new Usuario();
-			
+
 				System.out.println("e");
 
 				endereco.setCep(rs.getInt("endereco_cep"));
@@ -100,14 +142,14 @@ public class FuncionarioDAO implements InterfaceFuncionario {
 				funcionario.setGenero(rs.getString("genero"));
 				funcionario.setNumeroTelefone(rs.getString("numerotelefone"));
 				funcionario.setDatanasci(rs.getDate("dataNascimento").toLocalDate());
-				
+
 				funcionario.setUsuario(usuario);
 				funcionario.setEndereco(endereco);
 				System.out.println(funcionario);
 				listFunc.add(funcionario);
 			}
 		} catch (Exception e) {
-			
+
 		}
 		return listFunc;
 	}

@@ -111,7 +111,7 @@ String query = "DELETE FROM Cliente\r\n  WHERE Cpf = ?";
 	}
 
 
-	public Cliente atualizarCliente(Cliente cliente) {
+	public boolean atualizarCliente(Cliente cliente) {
 		
 		Conexao c = Conexao.getInstacia();
 		Connection con = c.conectar();
@@ -131,7 +131,7 @@ String query = "DELETE FROM Cliente\r\n  WHERE Cpf = ?";
 			ps.executeUpdate();
 			
 			c.fecharConexao();
-			// return true;
+			return true;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -139,7 +139,7 @@ String query = "DELETE FROM Cliente\r\n  WHERE Cpf = ?";
 			c.fecharConexao();
 		}
 		
-		return null;
+		return false;
 	}
 	
 	

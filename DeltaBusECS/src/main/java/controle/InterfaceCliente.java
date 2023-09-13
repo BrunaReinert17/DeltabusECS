@@ -8,5 +8,5 @@ public interface InterfaceCliente {
 
 	public boolean excluirCliente(Cliente cliente);
 
-	public Cliente atualizarCliente(Cliente cliente);
+	public boolean atualizarCliente(Cliente cliente);
 }
