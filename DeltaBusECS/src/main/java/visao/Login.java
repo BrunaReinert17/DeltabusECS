@@ -124,12 +124,12 @@ public class Login extends JFrame {
 		txtEmail.setColumns(10);
 
 		lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(Login.class.getResource("/imagem/titulo2.png")));
+
 		lblNewLabel_2.setBounds(-386, 58, 734, 114);
 		panel1.add(lblNewLabel_2);
 
 		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/imagem/logo.png")));
+
 		lblNewLabel.setBounds(-386, 11, 916, 225);
 		panel1.add(lblNewLabel);
 
@@ -149,7 +149,7 @@ public class Login extends JFrame {
 		panel1.add(lblNewLabel_4);
 
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/imagem/fundo.png")));
+
 		lblNewLabel_1.setBounds(0, 0, 2040, 1072);
 		contentPane.add(lblNewLabel_1);
 	}

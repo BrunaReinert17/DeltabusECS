@@ -73,6 +73,11 @@ public class MenuFuncionario extends JFrame {
 			}
 		});
 				
+						JLabel lblNewLabel_2 = new JLabel("");
+						lblNewLabel_2.setBounds(-792, 82, 1210, 211);
+						panel.add(lblNewLabel_2);
+						lblNewLabel_2.setIcon(new ImageIcon(MenuFuncionario.class.getResource("/imagem/perfil.png")));
+				
 				JLabel lblNewLabel_7 = new JLabel("");
 				lblNewLabel_7.setBounds(92, 337, 134, 43);
 				panel.add(lblNewLabel_7);
@@ -103,11 +108,6 @@ public class MenuFuncionario extends JFrame {
 		lblNewLabel_1.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 13));
 		lblNewLabel_1.setBounds(109, 275, 184, 18);
 		panel.add(lblNewLabel_1);
-
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setBounds(-792, 82, 1210, 211);
-		panel.add(lblNewLabel_2);
-		lblNewLabel_2.setIcon(new ImageIcon(MenuFuncionario.class.getResource("/imagem/perfil.png")));
 
 		btnCadastrarClientes = new RoundButton("Cadastro de Clientes");
 		btnCadastrarClientes.setText("Cadastrar Cliente:");

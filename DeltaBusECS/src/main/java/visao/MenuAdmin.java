@@ -86,22 +86,22 @@ public class MenuAdmin extends JFrame {
 				JLabel lblNewLabel_7 = new JLabel("");
 				lblNewLabel_7.setBounds(92, 337, 134, 43);
 				panel.add(lblNewLabel_7);
-				lblNewLabel_7.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagem/IconeHome.png")));
+
 				
 				JLabel lblNewLabel_5 = new JLabel("");
 				lblNewLabel_5.setBounds(46, 530, 141, 33);
 				panel.add(lblNewLabel_5);
-				lblNewLabel_5.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagem/icone-5.png")));
+
 				
 				JLabel lblNewLabel_4 = new JLabel("");
 				lblNewLabel_4.setBounds(36, 596, 92, 33);
 				panel.add(lblNewLabel_4);
-				lblNewLabel_4.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagem/Icone2.png")));
+
 		
 				JLabel lblNewLabel_3 = new JLabel("");
 				lblNewLabel_3.setBounds(-395, 421, 523, 73);
 				panel.add(lblNewLabel_3);
-				lblNewLabel_3.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagem/icone.png")));
+
 		btnVerificar.setForeground(Color.WHITE);
 		btnVerificar.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnVerificar.setBackground(new Color(0, 128, 128));
@@ -117,7 +117,7 @@ public class MenuAdmin extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(-792, 82, 1210, 211);
 		panel.add(lblNewLabel_2);
-		lblNewLabel_2.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagem/perfil.png")));
+
 
 		btnCadastrarUsuarios = new RoundButton("Cadastro de Usuário");
 		btnCadastrarUsuarios.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -152,7 +152,7 @@ public class MenuAdmin extends JFrame {
 		});
 
 		JLabel ImagemLogout = new JLabel("");
-		ImagemLogout.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagem/icone3.png")));
+
 		ImagemLogout.setBounds(92, 776, 122, 47);
 		panel.add(ImagemLogout);
 		rndbtnListar.setForeground(Color.WHITE);
@@ -180,7 +180,7 @@ public class MenuAdmin extends JFrame {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(-395, 411, 533, 79);
 		panel.add(lblNewLabel);
-		lblNewLabel.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagem/Icone.png")));
+
 		
 		RoundButton btnHome = new RoundButton("Logout");
 		btnHome.addActionListener(new ActionListener() {
@@ -199,12 +199,12 @@ public class MenuAdmin extends JFrame {
 		panel.add(btnHome);
 
 		JLabel lblNewLabel1 = new JLabel("New label");
-		lblNewLabel1.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagem/deltabus.png")));
+
 		lblNewLabel1.setBounds(1186, 868, 830, 126);
 		contentPane.add(lblNewLabel1);
 		
 		JLabel lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagem/Telas Pi (2).png")));
+
 		lblNewLabel_6.setBounds(263, 55, 1597, 959);
 		contentPane.add(lblNewLabel_6);
 

@@ -81,7 +81,7 @@ public class CadastrarUsuario extends JPanel {
 		lblLimpar = new JLabel("");
 		lblLimpar.setBounds(1035, 92, 110, 33);
 		lblLimpar.setBackground(new Color(245, 245, 245));
-		lblLimpar.setIcon(new ImageIcon(CadastrarUsuario.class.getResource("/imagem/Icone4.png")));
+		
 		add(lblLimpar);
 
 		JLabel lblNewLabel = new JLabel("Cadastrar Usuários");
