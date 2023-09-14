@@ -57,7 +57,7 @@ public class EnderecoDAO implements InterfaceEndereco {
 		PreparedStatement st = null;
 		int valida = 0;
 		try {
-			String query = "INSERT INTO endereco (cep, cidade, bairro, rua, estado, UF)values(?,?,?,?,?);";
+			String query = "INSERT INTO endereco (cep, cidade, bairro, rua, UF)values(?,?,?,?);";
 			PreparedStatement stm = c.prepareStatement(query);
 
 			stm.setLong(1, endereco.getCep());
