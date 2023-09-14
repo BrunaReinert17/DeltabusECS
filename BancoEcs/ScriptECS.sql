@@ -4,7 +4,7 @@ CREATE SCHEMA IF NOT EXISTS `deltaBus2` ;
 USE deltabus2;
 
 -- -----------------------------------------------------
--- Table `deltaBus`.`Veiculo`
+-- Table `deltabus2`.`Veiculo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Veiculo` (
   `idVeiculo` BIGINT(45) NOT NULL auto_increment,
@@ -24,19 +24,18 @@ CREATE TABLE IF NOT EXISTS `Veiculo` (
   PRIMARY KEY (`idVeiculo`));
 
 -- -----------------------------------------------------
--- Table `deltaBus`.`endereco`
+-- Table `deltabus2`.`endereco`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `endereco` (
   `cep` INT NOT NULL,
   `cidade` VARCHAR(45) NOT NULL,
   `bairro` VARCHAR(45) NOT NULL,
   `rua` VARCHAR(45) NOT NULL,
-  `estado` VARCHAR(45) NOT NULL,
   `UF` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`cep`));
 
 -- -----------------------------------------------------
--- Table `deltaBus`.`Clientes`
+-- Table `deltabus2`.`Clientes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Clientes` (
   `Nome`  VARCHAR(255) NOT NULL,
@@ -51,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `Clientes` (
 
 
 -- -----------------------------------------------------
--- Table `deltaBus`.`Pedido`
+-- Table `deltabus2`.`Pedido`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Pedido` (
 `id_pedidos` int not null auto_increment,
@@ -68,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `Pedido` (
 
 
 -- -----------------------------------------------------
--- Table `deltaBus`.`Usuario`
+-- Table `deltabus2`.`Usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Usuario` (
   `idUsuario` int NOT NULL auto_increment,
@@ -78,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `Usuario` (
   PRIMARY KEY (`idUsuario`));
 
 -- ----------------------------------------------------
--- Table `deltaBus`.`funcionarios`
+-- Table `deltabus2`.`funcionarios`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS funcionarios (
   `cpf` int NOT NULL,

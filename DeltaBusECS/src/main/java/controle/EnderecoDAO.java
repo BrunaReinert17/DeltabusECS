@@ -17,7 +17,7 @@ public class EnderecoDAO implements InterfaceEndereco {
 		Connection c = con.conectar();
 		try {
 			PreparedStatement ps = c.prepareStatement(
-					"select endereco.*, estados.cep as cep_estado, estados.cidade as cidade_estado, estados.bairro as bairro_estado from endereco inner join estados on estados.cep = endereco._estado where cep = ? ");
+					"select endereco.*, endereco.cep as cep_endereco, endereco.cidade as cidade_endereco, endereco.bairro as bairro_endereco from endereco inner join endereco on endereco.cep = endereco._endereco where cep = ? ");
 			ps.setLong(1, endereco.getCep());
 
 			ResultSet rs = ps.executeQuery();
@@ -35,7 +35,6 @@ public class EnderecoDAO implements InterfaceEndereco {
 				enderecoConfirmado.setCidade(cidade);
 				enderecoConfirmado.setBairro(bairro);
 				enderecoConfirmado.setRua(rua);
-				enderecoConfirmado.setEstado(estado);
 				enderecoConfirmado.setUf(uf);
 
 				return enderecoConfirmado;
@@ -64,7 +63,7 @@ public class EnderecoDAO implements InterfaceEndereco {
 			stm.setString(2, endereco.getCidade());
 			stm.setString(3, endereco.getBairro());
 			stm.setString(4, endereco.getRua());
-			stm.setString(5, endereco.getEstado());
+
 			stm.setString(6, endereco.getUf());
 
 			valida = stm.executeUpdate();
@@ -113,7 +112,7 @@ public class EnderecoDAO implements InterfaceEndereco {
 			ps.setString(1, endereco.getCidade());
 			ps.setString(2, endereco.getBairro());
 			ps.setString(3, endereco.getRua());
-			ps.setString(4, endereco.getEstado());
+			
 			ps.setString(5, endereco.getUf());
 			ps.setLong(6, endereco.getCep());
 
