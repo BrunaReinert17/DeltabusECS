@@ -102,10 +102,10 @@ public class ListarUsuario extends JFrame {
 		
 		RoundButton rndbtnDeletar = new RoundButton("Limpar Campo");
 		rndbtnDeletar.setText("Deletar");
-		rndbtnDeletar.setForeground(Color.WHITE);
+		rndbtnDeletar.setForeground(new Color(0, 0, 0));
 		rndbtnDeletar.setFont(new Font("Dialog", Font.BOLD, 16));
-		rndbtnDeletar.setBackground(new Color(0, 128, 128));
-		rndbtnDeletar.setBounds(1065, 3, 100, 33);
+		rndbtnDeletar.setBackground(new Color(255, 255, 255));
+		rndbtnDeletar.setBounds(1050, 3, 115, 33);
 		panel_1.add(rndbtnDeletar);
 		
 		RoundButton rndbtnConfirmar = new RoundButton("Limpar Campo");
@@ -113,7 +113,7 @@ public class ListarUsuario extends JFrame {
 		rndbtnConfirmar.setForeground(Color.WHITE);
 		rndbtnConfirmar.setFont(new Font("Dialog", Font.BOLD, 16));
 		rndbtnConfirmar.setBackground(new Color(0, 128, 128));
-		rndbtnConfirmar.setBounds(940, 3, 100, 33);
+		rndbtnConfirmar.setBounds(918, 4, 114, 33);
 		panel_1.add(rndbtnConfirmar);
 
 		atualizarTabela();

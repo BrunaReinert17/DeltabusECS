@@ -154,7 +154,7 @@ public class MenuAdmin extends JFrame {
 			}
 		});
 		rndbtnListar.setForeground(Color.WHITE);
-		rndbtnListar.setFont(new Font("Dialog", Font.BOLD, 16));
+		rndbtnListar.setFont(new Font("Dialog", Font.BOLD, 15));
 		rndbtnListar.setBackground(new Color(0, 128, 128));
 		rndbtnListar.setBounds(90, 530, 199, 43);
 		panel.add(rndbtnListar);

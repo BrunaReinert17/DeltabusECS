@@ -383,6 +383,7 @@ public class CadastrarUsuario extends JPanel {
 					EnderecoDAO enderecoDAO = new EnderecoDAO();
 					UsuarioDAO usuarioDAO = new UsuarioDAO();
 					Endereco endereco = enderecoDAO.consultandoEndereco(funcionario.getEndereco());
+					System.out.println(22);
 					boolean ende = false;
 					if(endereco== null) {
 						 ende = enderecoDAO.inserirEndereco(funcionario.getEndereco());
@@ -478,21 +479,21 @@ public class CadastrarUsuario extends JPanel {
 		textRua.setColumns(10);
 		add(textRua);
 		
-		RoundButton rndbtnAlterar = new RoundButton("Limpar Campo");
-		rndbtnAlterar.setText("Confirmar");
-		rndbtnAlterar.setForeground(Color.WHITE);
-		rndbtnAlterar.setFont(new Font("Dialog", Font.BOLD, 16));
-		rndbtnAlterar.setBackground(new Color(0, 0, 0));
-		rndbtnAlterar.setBounds(607, 641, 132, 33);
-		add(rndbtnAlterar);
+		RoundButton rndbtnConfirmar = new RoundButton("Limpar Campo");
+		rndbtnConfirmar.setText("Confirmar");
+		rndbtnConfirmar.setForeground(Color.WHITE);
+		rndbtnConfirmar.setFont(new Font("Dialog", Font.BOLD, 16));
+		rndbtnConfirmar.setBackground(new Color(0, 0, 0));
+		rndbtnConfirmar.setBounds(607, 641, 132, 33);
+		add(rndbtnConfirmar);
 		
-		RoundButton btnEditar = new RoundButton("Limpar Campo");
-		btnEditar.setText("");
-		btnEditar.setForeground(Color.WHITE);
-		btnEditar.setFont(new Font("Dialog", Font.BOLD, 14));
-		btnEditar.setBackground(new Color(245, 245, 245));
-		btnEditar.setBounds(1017, 82, 59, 43);
-		add(btnEditar);
+		RoundButton btnAlterar = new RoundButton("Limpar Campo");
+		btnAlterar.setText("");
+		btnAlterar.setForeground(Color.WHITE);
+		btnAlterar.setFont(new Font("Dialog", Font.BOLD, 14));
+		btnAlterar.setBackground(new Color(245, 245, 245));
+		btnAlterar.setBounds(1017, 82, 59, 43);
+		add(btnAlterar);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

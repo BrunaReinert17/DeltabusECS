@@ -55,6 +55,7 @@ public class FuncionarioDAO implements InterfaceFuncionario {
 
 			valida = stm.executeUpdate();
 		} catch (SQLException e) {
+			
 			e.printStackTrace();
 		} finally {
 			con.fecharConexao();
