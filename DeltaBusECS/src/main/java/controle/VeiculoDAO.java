@@ -34,16 +34,13 @@ public class VeiculoDAO {
 				ResultSet rs = ps.executeQuery();
 				while (rs.next()) {
 					 long veiculo = rs.getLong("veiculo");
-
-					
-
 					 Veiculo v = new Veiculo();
-					
+					 
 					v.setIdVeiculo(rs.getLong("idveiculo"));
 					v.setMarca(rs.getString("marca"));
 					v.setModelo(rs.getString("modelo"));
 					v.setPreco(rs.getDouble("preco"));
-					//v.setAno(rs.getLocalDate("ano"));
+					v.setAno(rs.getDate("ano").toLocalDate());
 					v.setAcessorios(rs.getString("acessorios"));
 					v.setLotacao(rs.getInt("lotacao"));
 					v.setPlaca(rs.getString("placa"));
@@ -128,10 +125,11 @@ public class VeiculoDAO {
 					+ "Marca = ?\r\n" + "Modelo = ?" + "Preco = ?" + " Acessorios = ?" + "Uf = ? ,  WHERE cep = ?";
 			try {
 				PreparedStatement ps = con.prepareStatement(query);
+
 				ps.setString(1, veiculo.getMarca());
 				ps.setString(2, veiculo.getModelo());
 				ps.setDouble(3, veiculo.getPreco());
-				//ps.setLocalDate(4, veiculo.getAno());
+				ps.setDate(4,java.sql.Date.valueOf( veiculo.getAno()));
 				ps.setString(5, veiculo.getAcessorios());
 				ps.setInt(6, veiculo.getLotacao());
 				ps.setString(7, veiculo.getPlaca());

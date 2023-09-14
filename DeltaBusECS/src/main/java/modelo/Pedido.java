@@ -5,29 +5,33 @@ import java.time.LocalDate;
 public class Pedido {
 
 	private int veiculo;
-
 	private String cliente;
-
 	private LocalDate dataCompra;
-
 	private Double valorPago;
-
 	private String tipoPagamento;
-	
-	
-	
-	public Pedido() {
-		super();
-	}
+	private int idpedido;
 
-	public Pedido(int veiculo, String cliente, LocalDate dataCompra, Double valorPago, String tipoPagamento) {
+	public Pedido(int veiculo, String cliente, LocalDate dataCompra, Double valorPago, String tipoPagamento, int idpedido) {
 
 		super();
+		this.idpedido = idpedido;
 		this.veiculo = veiculo;
 		this.cliente = cliente;
 		this.dataCompra = dataCompra;
 		this.valorPago = valorPago;
 		this.tipoPagamento = tipoPagamento;
+	}
+	
+	public Pedido() {
+		super();
+	}
+
+	public int getIdpedido() {
+		return idpedido;
+	}
+
+	public void setIdpedido(int idpedido) {
+		this.idpedido = idpedido;
 	}
 
 	public int getVeiculo() {
@@ -84,4 +88,6 @@ public class Pedido {
 
 		this.tipoPagamento = tipoPagamento;
 	}
+
+	
 }

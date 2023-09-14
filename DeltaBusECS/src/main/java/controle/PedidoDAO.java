@@ -13,47 +13,50 @@ import modelo.Endereco;
 import modelo.Pedido;
 import modelo.Veiculo;
 
-public class PedidoDAO implements InterfacePedido{
-   
-	 private Conexao con;
-	 
-	 public PedidoDAO() {
-	        con = Conexao.getInstacia();
-	    }
-	 
-	 public ArrayList<Pedido> listar() {
-			Conexao c = Conexao.getInstacia();
-			Connection con = c.conectar();
+public class PedidoDAO implements InterfacePedido {
 
-			ArrayList<Pedido> pedidos = new ArrayList<>();
+	private Conexao con;
 
-			String query = "SELECT * FROM pedido";
-			try {
-				
-				PreparedStatement ps = con.prepareStatement(query);
-				
-				ResultSet rs = ps.executeQuery();
-				while (rs.next()) {
-					 String id_pedido = rs.getString("id_pedido");
+	public PedidoDAO() {
+		con = Conexao.getInstacia();
+	}
 
-					 Pedido pedido = new Pedido();
-						
-					 pedido.setVeiculo(rs.getInt("veiculo"));
-					 pedido.setCliente(rs.getString("cliente"));
-					 //pedido.setDataCompra(rs.getString("datacompra"));
-					 pedido.setValorPago(rs.getDouble("valorpago"));
-					 pedido.setTipoPagamento(rs.getString("cnpj"));
+	public ArrayList<Pedido> listar() {
+		Conexao c = Conexao.getInstacia();
+		Connection con = c.conectar();
 
+		ArrayList<Pedido> pedidos = new ArrayList<>();
 
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+		String query = "SELECT * FROM pedido";
+		try {
+
+			PreparedStatement ps = con.prepareStatement("select * from pedidos");
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				int pedido = rs.getInt("p");
+
+				Pedido p = new Pedido();
+
+				System.out.println("e");
+
+				p.setIdpedido(rs.getInt("idpedido"));
+				p.setVeiculo(rs.getInt("veiculo"));
+				p.setCliente(rs.getString("cliente"));
+				p.setDataCompra(rs.getDate("datacompra").toLocalDate());
+				p.setValorPago(rs.getDouble("valorpago"));
+				p.setTipoPagamento(rs.getString("cnpj"));
+
 			}
-
-			c.fecharConexao();
-
-			return pedidos;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+
+		c.fecharConexao();
+
+		return pedidos;
+	}
 
 	@Override
 	public boolean inserirPedido(Pedido pedido) {
@@ -61,19 +64,19 @@ public class PedidoDAO implements InterfacePedido{
 
 		Connection con = c.conectar();
 
-		String query = "INSERT INTO Pedido " 
-		+ "(id_pedidos, dataCompra, valorPago,tipoPagamento,veiculo_idVeiculo,Cliente_cnpj) " 
-		+ "VALUES (?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO Pedido "
+				+ "(id_pedidos, dataCompra, valorPago,tipoPagamento,veiculo_idVeiculo,Cliente_cnpj) "
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			//ps.setInt (1,pedido .getId_Pedidos());
-			//ps.setLong(2, pedido.getDataCompra());
+			
+			ps.setInt (1,pedido.getIdpedido());
+			ps.setDate (2, java.sql.Date.valueOf( pedido.getDataCompra()));
 			ps.setDouble(3, pedido.getValorPago());
 			ps.setString(4, pedido.getTipoPagamento());
 			ps.setInt(5, pedido.getVeiculo());
 			ps.setString(6, pedido.getCliente());
-			
 
 			ps.executeUpdate();
 
@@ -95,7 +98,7 @@ public class PedidoDAO implements InterfacePedido{
 
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			//ps.setDouble(1, pedido.getpedido());
+			ps.setDouble(1, pedido.getIdpedido());
 			ps.executeUpdate();
 
 			c.fecharConexao();
@@ -109,11 +112,10 @@ public class PedidoDAO implements InterfacePedido{
 		return false;
 	}
 
-
 	@Override
 	public boolean alterarPedido(Pedido pedido) {
 
 		return false;
 	}
-	 
+
 }
