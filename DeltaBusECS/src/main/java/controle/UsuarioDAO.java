@@ -11,146 +11,140 @@ import modelo.Usuario;
 
 public class UsuarioDAO implements InterfaceUsuario {
 
-    private Conexao con;
+	private Conexao con;
 
-    public UsuarioDAO() {
-        con = Conexao.getInstacia();
-    }
+	public UsuarioDAO() {
+		con = Conexao.getInstacia();
+	}
 
-    @Override
-    public boolean inserirUsuario(Usuario usuario) {
-        Connection c = con.conectar();
-        int valida = 0;
+	@Override
+	public boolean inserirUsuario(Usuario usuario) {
+		Connection c = con.conectar();
+		int valida = 0;
 
-        try {
-            String query = "INSERT INTO usuario(idUsuario, senha, email, cargo) VALUES (?, ?, ?, ?)";
-            PreparedStatement stm = c.prepareStatement(query);
-            stm.setLong(1, usuario.getIdUsuario());
-            stm.setString(2, usuario.getSenha());
-            stm.setString(3, usuario.getEmail());
-            stm.setString(4, usuario.getCargo());
+		try {
+			String query = "INSERT INTO usuario(idUsuario, senha, email, cargo) VALUES (?, ?, ?, ?)";
+			PreparedStatement stm = c.prepareStatement(query);
+			stm.setLong(1, usuario.getIdUsuario());
+			stm.setString(2, usuario.getSenha());
+			stm.setString(3, usuario.getEmail());
+			stm.setString(4, usuario.getCargo());
 
-            valida = stm.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            con.fecharConexao();
-        }
-        return valida != 0;
-    }
+			valida = stm.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		return valida != 0;
+	}
 
-public boolean excluirUsuario(Usuario usuario) {
-    	
-    	Conexao c = Conexao.getInstacia();
+	public boolean excluirUsuario(Usuario usuario) {
+
+		Conexao c = Conexao.getInstacia();
 		Connection con = c.conectar();
-		
-String query = "DELETE FROM Usuario\r\n  WHERE idUsuario = ?";
-		
+
+		String query = "DELETE FROM Usuario\r\n  WHERE idUsuario = ?";
+
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setFloat(1, usuario.getIdUsuario());
 			ps.executeUpdate();
-			
+
 			c.fecharConexao();
 			return true;
-			
+
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 		return false;
 	}
 
-    @Override
-    public Usuario selecionar (Usuario usuarioModelo) {
-        Connection c = con.conectar();
-        try {
-            PreparedStatement ps = c.prepareStatement("SELECT * FROM usuario where senha = ? AND email = ?");
-            ps.setString(1, usuarioModelo.getSenha());
-            ps.setString(2, usuarioModelo.getEmail());
+	@Override
+	public Usuario selecionar(Usuario usuarioModelo) {
+		Connection c = con.conectar();
+		try {
+			PreparedStatement ps = c.prepareStatement("SELECT * FROM usuario where senha = ? AND email = ?");
+			ps.setString(1, usuarioModelo.getSenha());
+			ps.setString(2, usuarioModelo.getEmail());
 
-            ResultSet rs = ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
-                Long id = rs.getLong("idUsuario");
-                String senha = rs.getString("senha");
-                String email = rs.getString("email");
-                String cargo = rs.getString("cargo");
+			if (rs.next()) {
+				Long id = rs.getLong("idUsuario");
+				String senha = rs.getString("senha");
+				String email = rs.getString("email");
+				String cargo = rs.getString("cargo");
 
-                Usuario u = new Usuario(id, senha, email, cargo);
-                return u;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            con.fecharConexao();
-        }
-        return null;
-    }
+				Usuario u = new Usuario(id, senha, email, cargo);
+				return u;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		return null;
+	}
 
-    @Override
-    public boolean atualizarUsuario(Usuario usuario) {
-    	
-    	Conexao c = Conexao.getInstacia();
+	@Override
+	public boolean atualizarUsuario(Usuario usuario) {
+
+		Conexao c = Conexao.getInstacia();
 		Connection con = c.conectar();
-		
-		
-		String query = "UPDATE Endereco\r\n   SET" 
-				+ "Email = ?\r\n" + "Senha = ?" + "Cargo = ? ,  WHERE idUsuario = ?";
+
+		String query = "UPDATE Endereco\r\n   SET" + "Email = ?\r\n" + "Senha = ?" + "Cargo = ? ,  WHERE idUsuario = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, usuario.getEmail());
 			ps.setString(2, usuario.getSenha());
 			ps.setString(3, usuario.getCargo());
 			ps.setLong(4, usuario.getIdUsuario());
-			
-			
-			
-			
-			
+
 			ps.executeUpdate();
-			
+
 			c.fecharConexao();
 			return true;
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			c.fecharConexao();
 		}
-       
-        return false;
-    }
 
-    public ArrayList<Usuario> listar() {
-        Connection c = con.conectar();
-        ArrayList<Usuario> usuarios = new ArrayList<>();
+		return false;
+	}
 
-        try {
-            String query = "SELECT * FROM usuario";
-            PreparedStatement stm = c.prepareStatement(query);
-            ResultSet rs = stm.executeQuery();
+	public ArrayList<Usuario> listar() {
+		Connection c = con.conectar();
+		ArrayList<Usuario> usuarios = new ArrayList<>();
 
-            while (rs.next()) {
-                Long id = rs.getLong("idUsuario");
-                String senha = rs.getString("senha");
-                String email = rs.getString("email");
-                String cargo = rs.getString("cargo");
+		try {
+			String query = "SELECT * FROM usuario";
+			PreparedStatement stm = c.prepareStatement(query);
+			ResultSet rs = stm.executeQuery();
 
-                Usuario u = new Usuario(id, senha, email, cargo);
-                usuarios.add(u);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            con.fecharConexao();
-        }
+			while (rs.next()) {
+				Long id = rs.getLong("idUsuario");
+				String senha = rs.getString("senha");
+				String email = rs.getString("email");
+				String cargo = rs.getString("cargo");
 
-        return usuarios;
-    }
-    
-    public Usuario consultarLogin(Usuario usuario) {
+				Usuario u = new Usuario(id, senha, email, cargo);
+				usuarios.add(u);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+
+		return usuarios;
+	}
+
+	public Usuario consultarLogin(Usuario usuario) {
 		try {
 
 			con = Conexao.getInstacia();
@@ -161,7 +155,7 @@ String query = "DELETE FROM Usuario\r\n  WHERE idUsuario = ?";
 
 			ResultSet rs = ps.executeQuery();
 			Usuario usuarioConectado = new Usuario();
-			
+
 			while (rs.next()) {
 				long idUsuario = rs.getLong("idusuario");
 				String email = rs.getString("email");
@@ -187,7 +181,5 @@ String query = "DELETE FROM Usuario\r\n  WHERE idUsuario = ?";
 
 		return null;
 	}
-    
-    
-	
+
 }

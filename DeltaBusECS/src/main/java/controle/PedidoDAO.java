@@ -70,9 +70,9 @@ public class PedidoDAO implements InterfacePedido {
 
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			
-			ps.setInt (1,pedido.getIdpedido());
-			ps.setDate (2, java.sql.Date.valueOf( pedido.getDataCompra()));
+
+			ps.setInt(1, pedido.getIdpedido());
+			ps.setDate(2, java.sql.Date.valueOf(pedido.getDataCompra()));
 			ps.setDouble(3, pedido.getValorPago());
 			ps.setString(4, pedido.getTipoPagamento());
 			ps.setInt(5, pedido.getVeiculo());
@@ -114,6 +114,30 @@ public class PedidoDAO implements InterfacePedido {
 
 	@Override
 	public boolean alterarPedido(Pedido pedido) {
+		Conexao c = Conexao.getInstacia();
+		Connection con = c.conectar();
+
+		String query = "UPDATE Pedido\r\n   SET" + "nome = ?\r\n" + "dataNascimento = ?" + "genero = ?"
+				+ " numerotelefone = ?" + "email = ?" + "Usuario_idUsuario = ?" + "endereco_cep = ? ,  WHERE cpf = ?";
+		try {
+			PreparedStatement p = con.prepareStatement(query);
+
+			p.setInt(1, pedido.getIdpedido());
+			p.setDouble(2, pedido.getValorPago());
+			p.setDate(3, java.sql.Date.valueOf(pedido.getDataCompra()));
+			p.setString(4, pedido.getTipoPagamento());
+			p.setInt(5, pedido.getVeiculo());
+			p.setString(6, pedido.getCliente());
+			p.executeUpdate();
+
+			c.fecharConexao();
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			c.fecharConexao();
+		}
 
 		return false;
 	}

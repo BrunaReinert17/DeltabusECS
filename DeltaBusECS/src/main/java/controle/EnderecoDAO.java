@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import modelo.Endereco;
 
 public class EnderecoDAO implements InterfaceEndereco {
-	
+
 	private Conexao con;
-	
+
 	@Override
 	public Endereco consultandoEndereco(Endereco endereco) {
 		con = Conexao.getInstacia();
@@ -37,7 +37,7 @@ public class EnderecoDAO implements InterfaceEndereco {
 				enderecoConfirmado.setRua(rua);
 				enderecoConfirmado.setEstado(estado);
 				enderecoConfirmado.setUf(uf);
-				
+
 				return enderecoConfirmado;
 			}
 		} catch (Exception e) {
@@ -49,7 +49,7 @@ public class EnderecoDAO implements InterfaceEndereco {
 		return null;
 
 	}
-	
+
 	@Override
 	public boolean inserirEndereco(Endereco endereco) {
 		con = Conexao.getInstacia();
@@ -64,8 +64,8 @@ public class EnderecoDAO implements InterfaceEndereco {
 			stm.setString(2, endereco.getCidade());
 			stm.setString(3, endereco.getBairro());
 			stm.setString(4, endereco.getRua());
-			stm.setString(5,endereco.getEstado());
-			stm.setString(6,endereco.getUf());
+			stm.setString(5, endereco.getEstado());
+			stm.setString(6, endereco.getUf());
 
 			valida = stm.executeUpdate();
 		} catch (SQLException e) {
@@ -76,38 +76,38 @@ public class EnderecoDAO implements InterfaceEndereco {
 
 		return (valida == 0 ? false : true);
 	}
+
 	@Override
 	public boolean excluirEndereco(Endereco endereco) {
-		
+
 		Conexao c = Conexao.getInstacia();
 		Connection con = c.conectar();
-		
+
 		String query = "DELETE FROM Endereco\r\n  WHERE Cep = ?";
-		
+
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setFloat(1, endereco.getCep());
 			ps.executeUpdate();
-			
+
 			c.fecharConexao();
 			return true;
-			
+
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 		return false;
 	}
 
 	public boolean atualizarEndereco(Endereco endereco) {
-		
+
 		Conexao c = Conexao.getInstacia();
 		Connection con = c.conectar();
-		
-		
-		String query = "UPDATE Endereco\r\n   SET" 
-				+ "cidade = ?\r\n" + "bairro = ?" + "rua = ?" + " estado = ?" + "Uf = ? ,  WHERE cep = ?";
+
+		String query = "UPDATE Endereco\r\n   SET" + "cidade = ?\r\n" + "bairro = ?" + "rua = ?" + " estado = ?"
+				+ "Uf = ? ,  WHERE cep = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, endereco.getCidade());
@@ -116,21 +116,18 @@ public class EnderecoDAO implements InterfaceEndereco {
 			ps.setString(4, endereco.getEstado());
 			ps.setString(5, endereco.getUf());
 			ps.setLong(6, endereco.getCep());
-			
-			
-			
-			
+
 			ps.executeUpdate();
-			
+
 			c.fecharConexao();
 			return true;
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			c.fecharConexao();
 		}
-		
+
 		return false;
 	}
 

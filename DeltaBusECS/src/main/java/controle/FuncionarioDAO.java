@@ -46,7 +46,6 @@ public class FuncionarioDAO implements InterfaceFuncionario {
 			PreparedStatement stm = c.prepareStatement(query);
 
 			stm.setDouble(1, funcionario.getCpf());
-
 			stm.setString(2, funcionario.getNome());
 			stm.setDate(3, java.sql.Date.valueOf(funcionario.getDatanasci()));
 			stm.setString(4, funcionario.getGenero());
@@ -88,16 +87,15 @@ public class FuncionarioDAO implements InterfaceFuncionario {
 
 	@Override
 	public boolean alterarFuncionario(Funcionario funcionario) {
-		
+
 		Conexao c = Conexao.getInstacia();
 		Connection con = c.conectar();
-		
-		
-		String query = "UPDATE Funcionario\r\n   SET" 
-				+ "nome = ?\r\n" + "dataNascimento = ?" + "genero = ?" + " numerotelefone = ?" + "email = ?"+"Usuario_idUsuario = ?"+"endereco_cep = ? ,  WHERE cpf = ?";
+
+		String query = "UPDATE Funcionario\r\n   SET" + "nome = ?\r\n" + "dataNascimento = ?" + "genero = ?"
+				+ " numerotelefone = ?" + "email = ?" + "Usuario_idUsuario = ?" + "endereco_cep = ? ,  WHERE cpf = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			
+
 			ps.setDouble(1, funcionario.getCpf());
 			ps.setString(2, funcionario.getNome());
 			ps.setDate(3, java.sql.Date.valueOf(funcionario.getDatanasci()));
@@ -106,16 +104,16 @@ public class FuncionarioDAO implements InterfaceFuncionario {
 			ps.setLong(6, funcionario.getUsuario().getIdUsuario());
 			ps.setLong(7, funcionario.getEndereco().getCep());
 			ps.executeUpdate();
-			
+
 			c.fecharConexao();
 			return true;
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			c.fecharConexao();
 		}
-		
+
 		return false;
 	}
 
