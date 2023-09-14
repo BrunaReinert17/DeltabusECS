@@ -110,46 +110,59 @@ public class VeiculoDAO {
 
 			e.printStackTrace();
 		}
+
 		return false;
 	}
 
-	public boolean atualizarVeiculo(Veiculo veiculo) {
+		
+		
+		public boolean atualizarVeiculo(Veiculo veiculo) {
+			
+			Conexao c = Conexao.getInstacia();
+			Connection con = c.conectar();
+			
+			
+			String query = "UPDATE Endereco\r\n   SET" 
+					+ "Marca = ?\r\n" + "Modelo = ?" + "Preco = ?" + " Ano = ?" + " Acessorios= ?" + "Lotacao = ?" + "Placa = ?" + "Renavam = ?" + "Cor = ?" + "TipoFrota = ?" + "Kmveiculo = ?" + "Tipocombustivel = ?" + "situacao = ?,  WHERE idveiculo = ?";
+			try {
+				PreparedStatement ps = con.prepareStatement(query);
 
-		Conexao c = Conexao.getInstacia();
-		Connection con = c.conectar();
+				ps.setString(1, veiculo.getMarca());
+				ps.setString(2, veiculo.getModelo());
+				ps.setDouble(3, veiculo.getPreco());
+				ps.setDate(4,java.sql.Date.valueOf( veiculo.getAno()));
+				ps.setString(5, veiculo.getAcessorios());
+				ps.setInt(6, veiculo.getLotacao());
+				ps.setString(7, veiculo.getPlaca());
+				ps.setString(8, veiculo.getRenavam());
+				ps.setString(9, veiculo.getCor());
+				ps.setString(10, veiculo.getTipoFrota());
+				ps.setInt(11, veiculo.getKmveiculo());
+				ps.setString(12, veiculo.getTipoCombustivel());
+				ps.setBoolean(13, veiculo.isSituacao());
+				ps.setLong(14, veiculo.getIdVeiculo());
+				
+				
+				
+				
+				
+				ps.executeUpdate();
+				
+				c.fecharConexao();
+				return true;
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				c.fecharConexao();
+			}
+			
+			return false;
 
-		String query = "UPDATE Endereco\r\n   SET" + "Marca = ?\r\n" + "Modelo = ?" + "Preco = ?" + " Acessorios = ?"
-				+ "Uf = ? ,  WHERE cep = ?";
-		try {
-			PreparedStatement ps = con.prepareStatement(query);
+		
 
-			ps.setString(1, veiculo.getMarca());
-			ps.setString(2, veiculo.getModelo());
-			ps.setDouble(3, veiculo.getPreco());
-			ps.setDate(4, java.sql.Date.valueOf(veiculo.getAno()));
-			ps.setString(5, veiculo.getAcessorios());
-			ps.setInt(6, veiculo.getLotacao());
-			ps.setString(7, veiculo.getPlaca());
-			ps.setString(8, veiculo.getRenavam());
-			ps.setString(9, veiculo.getCor());
-			ps.setString(10, veiculo.getTipoFrota());
-			ps.setInt(11, veiculo.getKmveiculo());
-			ps.setString(12, veiculo.getTipoCombustivel());
-			// ps.setBoolean(13, veiculo.getSituacao());
-			ps.setLong(14, veiculo.getIdVeiculo());
 
-			ps.executeUpdate();
-
-			c.fecharConexao();
-			return true;
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			c.fecharConexao();
-		}
-
-		return false;
+	
 	}
 
 }
