@@ -45,7 +45,7 @@ public class MenuFuncionario extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuFuncionario() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuAdmin.class.getResource("/imagem/logoampliada.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuFuncionario.class.getResource("/imagens/logoampliada.png")));
 		setExtendedState(MAXIMIZED_BOTH);
 		setTitle("Principal Funcionario");
 		setTitle("Menu");

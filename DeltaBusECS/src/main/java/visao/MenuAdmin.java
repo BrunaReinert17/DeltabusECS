@@ -47,6 +47,7 @@ public class MenuAdmin extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuAdmin() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuAdmin.class.getResource("/imagens/logoampliada.png")));
 		System.out.println(MenuAdmin.class.getResource("/imagem/logoampliada.png"));
 		setExtendedState(MAXIMIZED_BOTH);
 		setTitle("Principal Administrador");

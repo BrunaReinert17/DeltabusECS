@@ -57,6 +57,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/imagens/logoampliada.png")));
 		System.out.println(MenuAdmin.class.getResource("/imagem/logoampliada.png"));
 		setExtendedState(MAXIMIZED_BOTH);
 		setTitle("Login");
