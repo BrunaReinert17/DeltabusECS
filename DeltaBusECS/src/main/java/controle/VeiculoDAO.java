@@ -66,12 +66,13 @@ public class VeiculoDAO {
 
 		        try {
 		            String query = "INSERT INTO Clientes(Nome, numeroTelefone, email, cnpj, endereco_cep) VALUES (?, ?, ?, ?)";
+		            
 		            PreparedStatement stm = c.prepareStatement(query);
 		            stm.setLong(1, veiculo.getIdVeiculo());
 		            stm.setString(2, veiculo.getMarca());
 		            stm.setString(3, veiculo.getModelo());
 		            stm.setDouble(4,veiculo.getPreco());
-		            //stm.setLocalDate(5, veiculo.getAno());
+		            stm.setDate(5,java.sql.Date.valueOf( veiculo.getAno()));
 		            stm.setString(6, veiculo.getAcessorios());
 		            stm.setInt(7, veiculo.getLotacao());
 		            stm.setString(8, veiculo.getPlaca());
