@@ -57,7 +57,7 @@ public class CadastrarUsuario extends JPanel {
 	private JLabel lblFuno;
 	private JLabel lblFuncao;
 	private JButton bntDeletar;
-	private JButton btnConfirmar;
+	private JButton btnCadastrar;
 	private JTextField txtDataNasci;
 	
 	//Variaveis atribuidas
@@ -65,7 +65,6 @@ public class CadastrarUsuario extends JPanel {
 	private JLabel txtRua;
 	private JTextField textRua;
 	private JTextField textField;
-	private JLabel lblLimpar;
 
 	public CadastrarUsuario() {
 		setLocale("Login");
@@ -78,11 +77,15 @@ public class CadastrarUsuario extends JPanel {
 		setBackground(new Color(245, 245, 245));
 		setLayout(null);
 		
-		lblLimpar = new JLabel("");
-		lblLimpar.setBounds(1035, 92, 110, 33);
-		lblLimpar.setBackground(new Color(245, 245, 245));
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(CadastrarUsuario.class.getResource("/imagens/icone editar.png")));
+		lblNewLabel_2.setBounds(991, 82, 85, 65);
+		add(lblNewLabel_2);
 		
-		add(lblLimpar);
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(CadastrarUsuario.class.getResource("/imagens/Icone4.png")));
+		lblNewLabel_1.setBounds(1035, 82, 110, 43);
+		add(lblNewLabel_1);
 
 		JLabel lblNewLabel = new JLabel("Cadastrar Usuários");
 		lblNewLabel.setBounds(25, 11, 182, 14);
@@ -362,10 +365,10 @@ public class CadastrarUsuario extends JPanel {
 		lblFuncao.setFont(new Font("Dialog", Font.BOLD, 13));
 		add(lblFuncao);
 
-		btnConfirmar = new RoundButton("Confirmar");
-		btnConfirmar.setBounds(521, 627, 132, 33);
-		btnConfirmar.setText("Cadastrar");
-		btnConfirmar.addActionListener(new ActionListener() {
+		btnCadastrar = new RoundButton("Confirmar");
+		btnCadastrar.setBounds(441, 641, 132, 33);
+		btnCadastrar.setText("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				Funcionario funcionario = verificarDados();
@@ -418,16 +421,16 @@ public class CadastrarUsuario extends JPanel {
 				
 			}
 		});
-		btnConfirmar.setForeground(Color.WHITE);
-		btnConfirmar.setFont(new Font("Dialog", Font.BOLD, 16));
-		btnConfirmar.setBackground(new Color(0, 128, 128));
-		add(btnConfirmar);
+		btnCadastrar.setForeground(Color.WHITE);
+		btnCadastrar.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnCadastrar.setBackground(new Color(0, 128, 128));
+		add(btnCadastrar);
 		add(txtDataNasci);
 		txtDataNasci.setColumns(10);
 		
 		
 		JButton btnLimparCampo = new RoundButton("Limpar Campo");
-		btnLimparCampo.setBounds(1061, 92, 84, 33);
+		btnLimparCampo.setBounds(1086, 82, 59, 43);
 		btnLimparCampo.setText("");
 		btnLimparCampo.setBackground(new Color(245, 245, 245));
 		btnLimparCampo.setForeground(Color.WHITE);
@@ -474,6 +477,22 @@ public class CadastrarUsuario extends JPanel {
 		textRua.setFont(new Font("Dialog", Font.BOLD, 13));
 		textRua.setColumns(10);
 		add(textRua);
+		
+		RoundButton rndbtnAlterar = new RoundButton("Limpar Campo");
+		rndbtnAlterar.setText("Confirmar");
+		rndbtnAlterar.setForeground(Color.WHITE);
+		rndbtnAlterar.setFont(new Font("Dialog", Font.BOLD, 16));
+		rndbtnAlterar.setBackground(new Color(0, 0, 0));
+		rndbtnAlterar.setBounds(607, 641, 132, 33);
+		add(rndbtnAlterar);
+		
+		RoundButton btnEditar = new RoundButton("Limpar Campo");
+		btnEditar.setText("");
+		btnEditar.setForeground(Color.WHITE);
+		btnEditar.setFont(new Font("Dialog", Font.BOLD, 14));
+		btnEditar.setBackground(new Color(245, 245, 245));
+		btnEditar.setBounds(1017, 82, 59, 43);
+		add(btnEditar);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

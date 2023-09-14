@@ -34,8 +34,6 @@ public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtEmail;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel;
 	private RoundButton btnNewButton;
 	private JPasswordField txtSenha;
 
@@ -123,16 +121,6 @@ public class Login extends JFrame {
 		txtEmail.setFont(new Font("Dialog", Font.BOLD, 13));
 		txtEmail.setColumns(10);
 
-		lblNewLabel_2 = new JLabel("");
-
-		lblNewLabel_2.setBounds(-386, 58, 734, 114);
-		panel1.add(lblNewLabel_2);
-
-		lblNewLabel = new JLabel("");
-
-		lblNewLabel.setBounds(-386, 11, 916, 225);
-		panel1.add(lblNewLabel);
-
 		txtSenha = new JPasswordField();
 		txtSenha.setBackground(UIManager.getColor("CheckBox.background"));
 		txtSenha.setBounds(87, 309, 274, 31);
@@ -147,10 +135,15 @@ public class Login extends JFrame {
 		lblNewLabel_4.setFont(new Font("Dialog", Font.BOLD, 13));
 		lblNewLabel_4.setBounds(87, 227, 56, 14);
 		panel1.add(lblNewLabel_4);
-
-		JLabel lblNewLabel_1 = new JLabel("");
-
-		lblNewLabel_1.setBounds(0, 0, 2040, 1072);
-		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setBounds(-359, -12, 678, 328);
+		panel1.add(lblNewLabel_2);
+		lblNewLabel_2.setIcon(new ImageIcon(Login.class.getResource("/imagens/logo.png")));
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/imagens/fundo.png")));
+		lblNewLabel.setBounds(0, 0, 1924, 1024);
+		contentPane.add(lblNewLabel);
 	}
 }

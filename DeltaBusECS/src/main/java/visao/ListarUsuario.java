@@ -23,6 +23,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class ListarUsuario extends JFrame {
 
@@ -98,6 +99,22 @@ public class ListarUsuario extends JFrame {
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 16));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		panel_1.add(lblNewLabel);
+		
+		RoundButton rndbtnDeletar = new RoundButton("Limpar Campo");
+		rndbtnDeletar.setText("Deletar");
+		rndbtnDeletar.setForeground(Color.WHITE);
+		rndbtnDeletar.setFont(new Font("Dialog", Font.BOLD, 16));
+		rndbtnDeletar.setBackground(new Color(0, 128, 128));
+		rndbtnDeletar.setBounds(1065, 3, 100, 33);
+		panel_1.add(rndbtnDeletar);
+		
+		RoundButton rndbtnConfirmar = new RoundButton("Limpar Campo");
+		rndbtnConfirmar.setText("Confirmar");
+		rndbtnConfirmar.setForeground(Color.WHITE);
+		rndbtnConfirmar.setFont(new Font("Dialog", Font.BOLD, 16));
+		rndbtnConfirmar.setBackground(new Color(0, 128, 128));
+		rndbtnConfirmar.setBounds(940, 3, 100, 33);
+		panel_1.add(rndbtnConfirmar);
 
 		atualizarTabela();
 	}
@@ -113,5 +130,4 @@ public class ListarUsuario extends JFrame {
 		}
 		table.setModel(tabela);
 	}
-
 }

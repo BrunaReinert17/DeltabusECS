@@ -66,7 +66,7 @@ public class MenuAdmin extends JFrame {
 				panelUsuario.setLocation(579, 97);
 				panelTeste = panelUsuario;
 				panelTeste.setBounds(568, 104, 1200, 800);
-				panelTeste.setVisible(false);
+				panelTeste.setVisible(true);
 				
 						contentPane.add(panelTeste);
 		
@@ -84,8 +84,14 @@ public class MenuAdmin extends JFrame {
 		});
 				
 				JLabel lblNewLabel_7 = new JLabel("");
-				lblNewLabel_7.setBounds(92, 337, 134, 43);
+				lblNewLabel_7.setBounds(95, 780, 119, 43);
 				panel.add(lblNewLabel_7);
+				lblNewLabel_7.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagens/icone3.png")));
+				
+				JLabel lblNewLabel_6 = new JLabel("");
+				lblNewLabel_6.setBounds(99, 338, 115, 42);
+				panel.add(lblNewLabel_6);
+				lblNewLabel_6.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagens/IconeHome.png")));
 
 				
 				JLabel lblNewLabel_5 = new JLabel("");
@@ -113,10 +119,6 @@ public class MenuAdmin extends JFrame {
 		lblNewLabel_1.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 13));
 		lblNewLabel_1.setBounds(109, 275, 184, 18);
 		panel.add(lblNewLabel_1);
-
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setBounds(-792, 82, 1210, 211);
-		panel.add(lblNewLabel_2);
 
 
 		btnCadastrarUsuarios = new RoundButton("Cadastro de Usuário");
@@ -150,13 +152,8 @@ public class MenuAdmin extends JFrame {
 
 			}
 		});
-
-		JLabel ImagemLogout = new JLabel("");
-
-		ImagemLogout.setBounds(92, 776, 122, 47);
-		panel.add(ImagemLogout);
 		rndbtnListar.setForeground(Color.WHITE);
-		rndbtnListar.setFont(new Font("Dialog", Font.BOLD, 15));
+		rndbtnListar.setFont(new Font("Dialog", Font.BOLD, 16));
 		rndbtnListar.setBackground(new Color(0, 128, 128));
 		rndbtnListar.setBounds(90, 530, 199, 43);
 		panel.add(rndbtnListar);
@@ -197,16 +194,11 @@ public class MenuAdmin extends JFrame {
 		btnHome.setBackground(Color.WHITE);
 		btnHome.setBounds(162, 337, 64, 43);
 		panel.add(btnHome);
-
-		JLabel lblNewLabel1 = new JLabel("New label");
-
-		lblNewLabel1.setBounds(1186, 868, 830, 126);
-		contentPane.add(lblNewLabel1);
 		
-		JLabel lblNewLabel_6 = new JLabel("");
-
-		lblNewLabel_6.setBounds(263, 55, 1597, 959);
-		contentPane.add(lblNewLabel_6);
+		JLabel lblNewLabel_8 = new JLabel("");
+		lblNewLabel_8.setBounds(-786, 74, 1105, 190);
+		panel.add(lblNewLabel_8);
+		lblNewLabel_8.setIcon(new ImageIcon(MenuAdmin.class.getResource("/imagens/perfil.png")));
 
 	}
 }
