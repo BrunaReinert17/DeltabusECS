@@ -1,4 +1,4 @@
--- DROP DATABASES deltaBus IF EXISTS 
+-- DROP DATABASE IF EXISTS deltaBus
 
 CREATE SCHEMA IF NOT EXISTS `deltaBus2` ;
 USE deltabus2;
@@ -96,6 +96,14 @@ CREATE TABLE IF NOT EXISTS funcionarios (
     FOREIGN KEY (`endereco_cep`)
     REFERENCES `endereco` (`cep`));
     
+    -- Criação da tabela administrador --
+CREATE TABLE IF NOT EXISTS `administrador` (
+  `idEmail` VARCHAR(255) NOT NULL,
+  `senha` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idEmail`)
+);
+
+    
     -- SELECTS--
 
 -- Select Veiculo --
@@ -127,13 +135,13 @@ VALUES ('Marcopolo', 'Paradiso G8 1050', 100000000.00, '2023-08-17', 'Ar condici
 -- INSERT endereco --
 
 -- NAO PODE CEp  REPETIDO 
-INSERT INTO endereco (cep, cidade, bairro, rua, estado, UF)
-VALUES ('21346563', 'Blumenau', 'Progresso', 'Rua Ernestine Ehrhardt', 'Santa Catarina', 'SC');
+INSERT INTO endereco (cep, cidade, bairro, rua, UF)
+VALUES (98765432, 'Blumenau', 'Progresso', 'Rua Ernestine Ehrhardt', 'SC');
 
 -- INSERT  Clientes--
 -- NAO PODE CPF e CEP REPETIDO 
 INSERT INTO Clientes (Nome, numeroTelefone, email, cpf,cnpj, endereco_cep) 
-VALUES ("Gisele" , '1234567890', 'gisele@gmail.com', 4545545448,464646546468439, 21346563);
+VALUES ('Gisele' , 1234567897, 'gisele@gmail.com', 1472583690,464646546468439, 12345678);
 
 -- INSERT Pedido --
 -- NAO COLOCA ID, O proprio banco COLOCA
@@ -144,10 +152,10 @@ VALUES ('2023-08-16', 15000.00, 'Cartao',1,'464646546468439');
 INSERT INTO Usuario ( senha, email, cargo)
 VALUES ( '1312', 'bruna@gmail.com', 'funcionario');
 
--- INSERTadministrador--
--- INSERT INTO adiministrador ( idEmail, senha) VALUES ('agatha.c2009@gmail.com','Agatha')--
+-- INSERT administrador--
+INSERT INTO administrador (idEmail, senha) VALUES ('agatha.c2009@gmail.com', 'Agatha');
 
 -- INSERT funcionarios --
 -- mudar sempre CPF antes de rodar novamente --
 INSERT INTO funcionarios (cpf, nome, dataNascimento, genero, numerotelefone, email, Usuario_idUsuario, endereco_cep) 
-VALUES ('15678903', 'Agatha Cristine Onofre Ribeiro', '2004-01-19', 'Feminino', 987654321, 'agatha.cor@gmail.com', 1, 21346563);
+VALUES (15678733, 'Agatha Cristine Onofre Ribeiro', '2004-01-19', 'Feminino', 987654321, 'agatha.cor@gmail.com', 1, 21346563);
