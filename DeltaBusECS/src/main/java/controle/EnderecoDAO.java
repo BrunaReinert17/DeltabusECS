@@ -17,18 +17,17 @@ public class EnderecoDAO implements InterfaceEndereco {
 		Connection c = con.conectar();
 		try {
 			PreparedStatement ps = c.prepareStatement(
-					"select endereco.*, endereco.cep as cep_endereco, endereco.cidade as cidade_endereco, endereco.bairro as bairro_endereco from endereco inner join endereco on endereco.cep = endereco._endereco where cep = ? ");
+					"select * from endereco where cep = ?");
 			ps.setLong(1, endereco.getCep());
 
 			ResultSet rs = ps.executeQuery();
-			Endereco enderecoConfirmado = new Endereco(0, null, null, null, null, null);
+			Endereco enderecoConfirmado = new Endereco();
 
 			while (rs.next()) {
 				int cep = rs.getInt("cep");
 				String cidade = rs.getString("cidade");
 				String bairro = rs.getString("bairro");
 				String rua = rs.getString("rua");
-				String estado = rs.getString("estado");
 				String uf = rs.getString("uf");
 
 				enderecoConfirmado.setCep(cep);
@@ -63,8 +62,7 @@ public class EnderecoDAO implements InterfaceEndereco {
 			stm.setString(2, endereco.getCidade());
 			stm.setString(3, endereco.getBairro());
 			stm.setString(4, endereco.getRua());
-
-			stm.setString(6, endereco.getUf());
+			stm.setString(5, endereco.getUf());
 
 			valida = stm.executeUpdate();
 		} catch (SQLException e) {
