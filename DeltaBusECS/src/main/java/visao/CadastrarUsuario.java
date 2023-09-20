@@ -176,7 +176,7 @@ public class CadastrarUsuario extends JPanel {
 		/**********/
 		MaskFormatter mascaraTelefone = null;
 		try {
-			mascaraCpf = new MaskFormatter("(##)#####-####");
+			mascaraCpf = new MaskFormatter("(##)####-####");
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
@@ -365,7 +365,7 @@ public class CadastrarUsuario extends JPanel {
 		lblFuncao.setFont(new Font("Dialog", Font.BOLD, 13));
 		add(lblFuncao);
 
-		btnCadastrar = new RoundButton("Confirmar");
+		btnCadastrar = new RoundButton("Cadastrar");
 		btnCadastrar.setBounds(441, 641, 132, 33);
 		btnCadastrar.setText("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -375,7 +375,7 @@ public class CadastrarUsuario extends JPanel {
 				
 				Usuario usuario = new Usuario();
 				if (funcionario == null ) {
-					JOptionPane.showMessageDialog(null, verificarCampo, "Dados inválidos:",
+					JOptionPane.showMessageDialog(txtCpf, verificarCampo, "Dados inválidos:",
 							JOptionPane.ERROR_MESSAGE, null);
 
 				}else {
