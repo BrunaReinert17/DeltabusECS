@@ -143,9 +143,6 @@ public class VeiculoDAO {
 				ps.setLong(14, veiculo.getIdVeiculo());
 				
 				
-				
-				
-				
 				ps.executeUpdate();
 				
 				c.fecharConexao();
@@ -158,11 +155,6 @@ public class VeiculoDAO {
 			}
 			
 			return false;
-
-		
-
-
-	
 	}
 
 }

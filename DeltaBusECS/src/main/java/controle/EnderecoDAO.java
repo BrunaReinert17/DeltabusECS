@@ -19,10 +19,8 @@ public class EnderecoDAO implements InterfaceEndereco {
 			PreparedStatement ps = c.prepareStatement(
 					"select * from endereco where cep = ?");
 			ps.setLong(1, endereco.getCep());
-
 			ResultSet rs = ps.executeQuery();
-			Endereco enderecoConfirmado = new Endereco();
-
+	
 			while (rs.next()) {
 				int cep = rs.getInt("cep");
 				String cidade = rs.getString("cidade");
@@ -30,21 +28,15 @@ public class EnderecoDAO implements InterfaceEndereco {
 				String rua = rs.getString("rua");
 				String uf = rs.getString("uf");
 
-				enderecoConfirmado.setCep(cep);
-				enderecoConfirmado.setCidade(cidade);
-				enderecoConfirmado.setBairro(bairro);
-				enderecoConfirmado.setRua(rua);
-				enderecoConfirmado.setUf(uf);
-
-				return enderecoConfirmado;
+				Endereco enderecoConfirmado = new Endereco(cep,cidade,bairro,rua,uf);
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		} finally {
 			con.fecharConexao();
 		}
-		return null;
+		return endereco;
 
 	}
 

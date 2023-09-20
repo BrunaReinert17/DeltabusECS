@@ -12,7 +12,7 @@ public class Endereco {
 	public Endereco() {
 		super();
 	}
-	public Endereco(int cep, String cidade,String bairro,String rua, String estado, String UF) {
+	public Endereco(int cep, String cidade,String bairro,String rua, String UF) {
 		super();
 		this.cep = cep;
 		this.cidade = cidade;

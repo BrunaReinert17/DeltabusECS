@@ -82,7 +82,7 @@ public class PedidoDAO implements InterfacePedido {
 
 			c.fecharConexao();
 
-			return true;
+			//return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
