@@ -1,17 +1,15 @@
--- DROP DATABASE IF EXISTS deltaBus
-
+-- DROP DATABASE IF EXISTS deltaBus2
 CREATE SCHEMA IF NOT EXISTS `deltaBus2` ;
-USE deltabus2;
-
+USE deltaBus2;
 -- -----------------------------------------------------
--- Table `deltabus2`.`Veiculo`
+-- Table `deltaBus2`.`Veiculo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Veiculo` (
   `idVeiculo` BIGINT(45) NOT NULL auto_increment,
   `marca` VARCHAR(45) NOT NULL,
   `modelo` VARCHAR(45) NOT NULL,
   `preco` DOUBLE NOT NULL,
-  `ano` DATE NOT NULL,
+  `ano` VARCHAR (8) NOT NULL,
   `acessorios` VARCHAR(45) NOT NULL,
   `lotacao` INT NOT NULL,
   `cor` VARCHAR(45) NOT NULL,
@@ -22,9 +20,8 @@ CREATE TABLE IF NOT EXISTS `Veiculo` (
   `renavam` VARCHAR(45) NOT NULL,
   `situacao` TINYINT NOT NULL,
   PRIMARY KEY (`idVeiculo`));
-
 -- -----------------------------------------------------
--- Table `deltabus2`.`endereco`
+-- Table `deltaBus2`.`endereco`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `endereco` (
   `cep` INT NOT NULL,
@@ -33,9 +30,8 @@ CREATE TABLE IF NOT EXISTS `endereco` (
   `rua` VARCHAR(45) NOT NULL,
   `UF` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`cep`));
-
 -- -----------------------------------------------------
--- Table `deltabus2`.`Clientes`
+-- Table `deltaBus2`.`Clientes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Clientes` (
   `Nome`  VARCHAR(255) NOT NULL,
@@ -45,12 +41,9 @@ CREATE TABLE IF NOT EXISTS `Clientes` (
   `cnpj` BIGINT NOT NULL,
   `endereco_cep` INT NOT NULL,
   PRIMARY KEY (`cnpj`),
-    FOREIGN KEY (`endereco_cep`)
-    REFERENCES `endereco` (`cep`));
-
-
+    FOREIGN KEY (`endereco_cep`) REFERENCES `endereco` (`cep`));
 -- -----------------------------------------------------
--- Table `deltabus2`.`Pedido`
+-- Table `deltaBus2`.`Pedido`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Pedido` (
 `id_pedidos` int not null auto_increment,
@@ -60,14 +53,10 @@ CREATE TABLE IF NOT EXISTS `Pedido` (
   `Veiculo_idVeiculo` BIGINT(45) NOT NULL,
   `Clientes_cnpj` BIGINT NOT NULL,
   PRIMARY KEY (`id_pedidos`),
-    FOREIGN KEY (`Veiculo_idVeiculo`)
-    REFERENCES `Veiculo` (`idVeiculo`),
-    FOREIGN KEY (`Clientes_cnpj`)
-    REFERENCES `Clientes` (`cnpj`));
-
-
+    FOREIGN KEY (`Veiculo_idVeiculo`) REFERENCES `Veiculo` (`idVeiculo`),
+    FOREIGN KEY (`Clientes_cnpj`) REFERENCES `Clientes` (`cnpj`));
 -- -----------------------------------------------------
--- Table `deltabus2`.`Usuario`
+-- Table `deltaBus2`.`Usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Usuario` (
   `idUsuario` int NOT NULL auto_increment,
@@ -75,11 +64,10 @@ CREATE TABLE IF NOT EXISTS `Usuario` (
   `email` VARCHAR(45) NOT NULL,
   `cargo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idUsuario`));
-
 -- ----------------------------------------------------
--- Table `deltabus2`.`funcionarios`
+-- Table `deltaBus2`.`funcionarios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS funcionarios (
+CREATE TABLE IF NOT EXISTS `funcionarios` (
   `cpf` int NOT NULL,
   `nome` VARCHAR(255) NOT NULL,
   `dataNascimento` VARCHAR(45) NOT NULL,
@@ -89,45 +77,35 @@ CREATE TABLE IF NOT EXISTS funcionarios (
   `Usuario_idUsuario` int NOT NULL,
   `endereco_cep` INT NOT NULL,
   PRIMARY KEY (`cpf`),
-
-    FOREIGN KEY (`Usuario_idUsuario`)
-    REFERENCES `Usuario` (`idUsuario`),
- 
-    FOREIGN KEY (`endereco_cep`)
-    REFERENCES `endereco` (`cep`));
-    
-
+    FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `Usuario` (`idUsuario`),
+    FOREIGN KEY (`endereco_cep`) REFERENCES `endereco` (`cep`));
     
     -- SELECTS--
-
 -- Select Veiculo --
 SELECT COUNT(*) FROM Veiculo;
 SELECT * FROM Veiculo ORDER By idVeiculo ASC;
-
 -- Select endereco --
 SELECT COUNT(*) FROM endereco;
 SELECT * FROM endereco ORDER BY cep ASC;
-
 -- Selects Clientes -- 
 SELECT COUNT(*) FROM Clientes; 
 SELECT * FROM Clientes ORDER BY cnpj ASC;
-
-
 -- Selects Usuario -- 
 SELECT COUNT(*) FROM Usuario;
 SELECT * FROM Usuario  ORDER BY idUsuario ASC;
-
 -- Select funcionarios -- 
 SELECT COUNT(*) FROM funcionarios;
 SELECT * FROM funcionarios ORDER BY cpf ASC;
 
+-- INSERTS --
+
 -- INSERT Veiculo --
 -- NAO VAI ID 
-INSERT INTO Veiculo (marca, modelo, preco, ano, acessorios, lotacao, cor, tipoFrota, tipoCombustivel, consultarEstoque_Codigoveiculo, placa, renavam, situacao) 
-VALUES ('Marcopolo', 'Paradiso G8 1050', 100000000.00, '2023-08-17', 'Ar condicionado, GPS', 5, 'Azul', 'Passeio', 'diesel', 123, 'ABC123', '123456789', 2);
+INSERT INTO Veiculo (marca, modelo, preco, ano, acessorios, lotacao, cor, tipoFrota, tipoCombustivel, consultarEstoque_Codigoveiculo, placa, renavam, situacao) VALUES ('Marcopolo', 'Paradiso G8 1050', 100000000.00, '2023-08-17', 'Ar condicionado, GPS', 5, 'Azul', 'Passeio', 'diesel', 123, 'ABC123', '123456789', 2);
 
 -- INSERT endereco --
 -- NAO PODE CEp  REPETIDO 
+<<<<<<< Updated upstream
 INSERT INTO endereco (cep, cidade, bairro, rua, UF)
 VALUES (12345679, 'Blumenau', 'Progresso', 'Rua Ernestine Ehrhardt', 'SC');
 
@@ -140,15 +118,29 @@ VALUES ("Gisele" , '1234567890', 'gisele@gmail.com', 4545545448,464646546468430,
 -- NAO COLOCA ID, O proprio banco COLOCA
 INSERT INTO Pedido (dataCompra, valorPago, tipoPagamento, Veiculo_idVeiculo,Clientes_cnpj) 
 VALUES ('2023-08-16', 15000.00, 'Cartao',1,'464646546468430');
+=======
+INSERT INTO endereco (cep, cidade, bairro, rua, UF) VALUES (21346568, 'Blumenau', 'Progresso', 'Rua Ernestine Ehrhardt', 'SC');
+
+-- INSERT  Clientes--
+-- NAO PODE CPF e CEP REPETIDO 
+INSERT INTO Clientes (Nome, numeroTelefone, email, cpf,cnpj, endereco_cep) VALUES ("Gisele" , '1234567890', 'gisele@gmail.com', 4545545448,464646546468436, 21346568);
+
+-- INSERT Pedido --
+-- NAO COLOCA ID, O proprio banco COLOCA
+INSERT INTO Pedido (dataCompra, valorPago, tipoPagamento, Veiculo_idVeiculo,Clientes_cnpj) VALUES ('2023-08-16', 15000.00, 'Cartao',1,'464646546468436');
+>>>>>>> Stashed changes
 
 --  INSERT Usuario --
-INSERT INTO Usuario ( senha, email, cargo)
-VALUES ( '1312', 'bruna@gmail.com', 'funcionario');
+INSERT INTO Usuario ( senha, email, cargo) VALUES ( '1312', 'bruna@gmail.com', 'funcionario');
 
 -- INSERT administrador--
 -- INSERT INTO administrador (idEmail, senha) VALUES ('agatha.c2009@gmail.com', 'Agatha');--
 
 -- INSERT funcionarios --
 -- mudar sempre CPF antes de rodar novamente --
+<<<<<<< Updated upstream
 INSERT INTO funcionarios (cpf, nome, dataNascimento, genero, numerotelefone, email, Usuario_idUsuario, endereco_cep) 
 VALUES (15678739, 'Agatha Cristine Onofre Ribeiro', '2004-01-19', 'Feminino', 987654321, 'agatha.cor@gmail.com', 1, 12345679);
+=======
+INSERT INTO funcionarios (cpf, nome, dataNascimento, genero, numerotelefone, email, Usuario_idUsuario, endereco_cep) VALUES (15678734, 'Agatha Cristine Onofre Ribeiro', '2004-01-19', 'Feminino', 987654321, 'agatha.cor@gmail.com', 1, 21346568);
+>>>>>>> Stashed changes

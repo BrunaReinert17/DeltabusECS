@@ -1,6 +1,6 @@
 package visao;
 
-import java.awt.Color;
+import java.awt.Color; 
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -66,7 +66,7 @@ public class MenuAdmin extends JFrame {
 				panelUsuario.setToolTipText("");
 				panelUsuario.setLocation(579, 97);
 				panelTeste = panelUsuario;
-				panelTeste.setBounds(568, 104, 1200, 800);
+				panelTeste.setBounds(375, 0, 1200, 800);
 				panelTeste.setVisible(true);
 				
 						contentPane.add(panelTeste);

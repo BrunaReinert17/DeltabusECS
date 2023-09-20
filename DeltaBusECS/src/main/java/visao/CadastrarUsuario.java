@@ -59,14 +59,12 @@ public class CadastrarUsuario extends JPanel {
 	private JButton bntDeletar;
 	private JButton btnCadastrar;
 	private JTextField txtDataNasci;
-	
-	//Variaveis atribuidas
-	private String verificarCampo ;
+
+	// Variaveis atribuidas
+	private String verificarCampo;
 	private JLabel txtRua;
 	private JTextField textRua;
 	private JTextField textField;
-	
-
 
 	public CadastrarUsuario() {
 		setLocale("Login");
@@ -78,7 +76,7 @@ public class CadastrarUsuario extends JPanel {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setBackground(new Color(245, 245, 245));
 		setLayout(null);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(CadastrarUsuario.class.getResource("/imagens/Icone4.png")));
 		lblNewLabel_1.setBounds(1035, 82, 110, 43);
@@ -169,7 +167,6 @@ public class CadastrarUsuario extends JPanel {
 		lblTelefone.setFont(new Font("Dialog", Font.BOLD, 13));
 		add(lblTelefone);
 
-		
 		/**********/
 		MaskFormatter mascaraTelefone = null;
 		try {
@@ -181,17 +178,17 @@ public class CadastrarUsuario extends JPanel {
 		txtTelefone.setBounds(217, 364, 182, 30);
 		txtTelefone.setText("");
 		/**********/
-		
+
 		txtTelefone.setFont(new Font("Dialog", Font.BOLD, 13));
 		txtTelefone.setColumns(10);
 		add(txtTelefone);
-		
+
 		lblDataDeNascimento = new JLabel("Data de Nascimento:");
 		lblDataDeNascimento.setBounds(521, 252, 194, 14);
 		lblDataDeNascimento.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblDataDeNascimento.setFont(new Font("Dialog", Font.BOLD, 13));
 		add(lblDataDeNascimento);
-		
+
 		/**********/
 		MaskFormatter mascaraDataDeNascimento = null;
 		try {
@@ -199,7 +196,7 @@ public class CadastrarUsuario extends JPanel {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		txtDataNasci  = new JFormattedTextField(mascaraCpf);
+		txtDataNasci = new JFormattedTextField(mascaraCpf);
 		txtDataNasci.setBounds(521, 271, 149, 29);
 		txtDataNasci.setFont(new Font("Dialog", Font.BOLD, 13));
 		/**********/
@@ -208,7 +205,7 @@ public class CadastrarUsuario extends JPanel {
 		genero.add("Masculino");
 		genero.add("Feminino");
 		genero.add("Outro");
-		
+
 		cbGenero = new JComboBox();
 		cbGenero.setBounds(792, 270, 182, 31);
 		cbGenero.addAncestorListener(new AncestorListener() {
@@ -218,15 +215,16 @@ public class CadastrarUsuario extends JPanel {
 
 				}
 			}
+
 			public void ancestorMoved(AncestorEvent event) {
 			}
+
 			public void ancestorRemoved(AncestorEvent event) {
 			}
 		});
 		cbGenero.setFont(new Font("Dialog", Font.BOLD, 13));
 		add(cbGenero);
 
-	
 		/**********/
 		MaskFormatter mascaraCep = null;
 		try {
@@ -234,11 +232,11 @@ public class CadastrarUsuario extends JPanel {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		txtCep  = new JFormattedTextField(mascaraCpf);
+		txtCep = new JFormattedTextField(mascaraCpf);
 		txtCep.setBounds(521, 364, 149, 30);
 		txtCep.setText("");
 		/**********/
-		
+
 		txtCep.setFont(new Font("Dialog", Font.BOLD, 13));
 		txtCep.setColumns(10);
 		add(txtCep);
@@ -254,14 +252,14 @@ public class CadastrarUsuario extends JPanel {
 		txtBairro.setFont(new Font("Dialog", Font.BOLD, 13));
 		txtBairro.setColumns(10);
 		add(txtBairro);
-		
+
 		ArrayList<String> cidade = new ArrayList<>();
 		cidade.add("");
 		cidade.add("Majé");
 		cidade.add("Ilhota");
 		cidade.add("Gaspar");
 		cidade.add("Blumenau");
-		
+
 		cbCidade = new JComboBox();
 		cbCidade.setBounds(217, 447, 182, 30);
 		cbCidade.addAncestorListener(new AncestorListener() {
@@ -271,8 +269,10 @@ public class CadastrarUsuario extends JPanel {
 
 				}
 			}
+
 			public void ancestorMoved(AncestorEvent event) {
 			}
+
 			public void ancestorRemoved(AncestorEvent event) {
 			}
 		});
@@ -301,7 +301,7 @@ public class CadastrarUsuario extends JPanel {
 		uf.add("SP");
 		uf.add("RS");
 		uf.add("PR");
-		
+
 		cbUf = new JComboBox();
 		cbUf.setBounds(820, 364, 98, 30);
 		cbUf.addAncestorListener(new AncestorListener() {
@@ -311,8 +311,10 @@ public class CadastrarUsuario extends JPanel {
 
 				}
 			}
+
 			public void ancestorMoved(AncestorEvent event) {
 			}
+
 			public void ancestorRemoved(AncestorEvent event) {
 			}
 		});
@@ -334,7 +336,7 @@ public class CadastrarUsuario extends JPanel {
 		lblSenha.setBounds(691, 524, 155, 14);
 		lblSenha.setFont(new Font("Dialog", Font.BOLD, 13));
 		add(lblSenha);
-		
+
 		ArrayList<String> funcao = new ArrayList<>();
 		funcao.add("Administrador");
 		funcao.add("Funcionário");
@@ -348,12 +350,14 @@ public class CadastrarUsuario extends JPanel {
 
 				}
 			}
+
 			public void ancestorMoved(AncestorEvent event) {
 			}
+
 			public void ancestorRemoved(AncestorEvent event) {
 			}
 		});
-		cbFuncao.setModel(new DefaultComboBoxModel(new String[] {""}));
+		cbFuncao.setModel(new DefaultComboBoxModel(new String[] { "" }));
 		cbFuncao.setFont(new Font("Dialog", Font.BOLD, 13));
 		add(cbFuncao);
 
@@ -367,32 +371,25 @@ public class CadastrarUsuario extends JPanel {
 		btnCadastrar.setText("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				Usuario usuario = new Usuario();
 				String erros = "";
-				
 				String nome = txtNome.getText();
 				String datanasci = txtDataNasci.getText();
 				String genero = (String) cbGenero.getSelectedItem();
-				String Telefone = txtTelefone.getText().replace(".","").replace("-", "");
-				String cpf = txtCpf.getText().replace(".","").replace("-", "");
-				String enderecoCep = txtCep.getText().replace("-","");
+				String Telefone = txtTelefone.getText().replace(".", "").replace("-", "");
+				String cpf = txtCpf.getText().replace(".", "").replace("-", "");
+				String enderecoCep = txtCep.getText().replace("-", "");
 				usuario = setarObjetoUsuario();
-				
 				Funcionario funcionario = new Funcionario();
-				
-				if(nome == null || nome.trim() == "" || nome.isEmpty()) {
+				if (nome == null || nome.trim() == "" || nome.isEmpty()) {
 					erros += "nome\n";
-				}
-				else {
+				} else {
 					funcionario.setNome(nome);
 				}
-				
 			}
-
 			private Usuario setarObjetoUsuario() {
 				// TODO Auto-generated method stub
-				return null;
+				return Usuario;
 			}
 		});
 		btnCadastrar.setForeground(Color.WHITE);
@@ -401,8 +398,7 @@ public class CadastrarUsuario extends JPanel {
 		add(btnCadastrar);
 		add(txtDataNasci);
 		txtDataNasci.setColumns(10);
-		
-		
+
 		JButton btnLimparCampo = new RoundButton("Limpar Campo");
 		btnLimparCampo.setBounds(1086, 82, 59, 43);
 		btnLimparCampo.setText("");
@@ -411,47 +407,36 @@ public class CadastrarUsuario extends JPanel {
 		btnLimparCampo.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnLimparCampo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				 txtNome.setText("");
 
+				txtNome.setText("");
 				txtCpf.setText("");
-
-			
-				 txtEmail.setText("");
-
-			 txtTelefone.setText("");
-					
-
-			txtDataNasci.setText("");
-
-			 txtCep.setText("");
-
-				 txtSenha.setText("");
-				
+				txtEmail.setText("");
+				txtTelefone.setText("");
+				txtDataNasci.setText("");
+				txtCep.setText("");
+				txtSenha.setText("");
 				txtBairro.setText("");
-				
 				textRua.setText("");
-			
+
 			}
 		});
 		add(btnLimparCampo);
-		
 		JLabel lblGnero_1 = new JLabel("Gênero:");
 		lblGnero_1.setBounds(792, 252, 98, 14);
 		lblGnero_1.setFont(new Font("Dialog", Font.BOLD, 13));
 		add(lblGnero_1);
-		
+
 		txtRua = new JLabel("Rua:");
 		txtRua.setBounds(792, 428, 155, 14);
 		txtRua.setFont(new Font("Dialog", Font.BOLD, 13));
 		add(txtRua);
-		
+
 		textRua = new JTextField();
 		textRua.setBounds(792, 447, 182, 31);
 		textRua.setFont(new Font("Dialog", Font.BOLD, 13));
 		textRua.setColumns(10);
 		add(textRua);
-		
+
 		RoundButton rndbtnConfirmar = new RoundButton("Limpar Campo");
 		rndbtnConfirmar.setText("Confirmar");
 		rndbtnConfirmar.setForeground(Color.WHITE);
@@ -466,28 +451,25 @@ public class CadastrarUsuario extends JPanel {
 	}
 
 	private void setLocale(String string) {
-		
 
 	}
 
 	private void setContentPane(JPanel contentPane) {
-		
 
 	}
 
 	private void setDefaultCloseOperation(int exitOnClose) {
-	
 
 	}
+
 	public Funcionario verificarDados() {
-		
+
 		Funcionario funcionario = new Funcionario();
 		Usuario usuario = new Usuario();
 		Endereco endereco = new Endereco();
-		
-		
+
 		verificarCampo = "";
-		
+
 		String nome = txtNome.getText();
 
 		String cpfTxt = txtCpf.getText().replace(".", "").replace("-", "");
@@ -496,8 +478,7 @@ public class CadastrarUsuario extends JPanel {
 
 		String email = txtEmail.getText();
 
-		String telefone = txtTelefone.getText().replace("-", "").replace("(", "").replace(")",
-				"");
+		String telefone = txtTelefone.getText().replace("-", "").replace("(", "").replace(")", "");
 
 		String dataN = txtDataNasci.getText();
 
@@ -506,13 +487,13 @@ public class CadastrarUsuario extends JPanel {
 		String UF = (String) cbUf.getSelectedItem();
 
 		String funcao = (String) cbFuncao.getSelectedItem();
-		
+
 		String senha = txtSenha.getText();
-		
+
 		String bairro = txtBairro.getText();
-		
+
 		String cidade = (String) cbCidade.getSelectedItem();
-		
+
 		String rua = txtRua.getText();
 		if (nome == null || nome.trim() == "" || nome.isEmpty()) {
 			verificarCampo += "Nome\n";
@@ -520,11 +501,10 @@ public class CadastrarUsuario extends JPanel {
 			funcionario.setNome(nome);
 		}
 
-
 		if (cpfTxt == null || cpfTxt.trim() == "" || cpfTxt.isEmpty()) {
 			verificarCampo += "CPF\n";
 		} else {
-			String cpf = String.valueOf(cpfTxt);		
+			String cpf = String.valueOf(cpfTxt);
 			funcionario.setCpf(cpf);
 		}
 		if (email == null || email.trim() == "" || email.isEmpty()) {
@@ -539,11 +519,11 @@ public class CadastrarUsuario extends JPanel {
 			funcionario.setNumeroTelefone(telefone);
 
 		}
-		
+
 		if (genero == null || genero.trim() == "" || genero.isEmpty()) {
 			verificarCampo += "Genero\n";
 		} else {
-			
+
 			funcionario.setGenero(genero);
 		}
 		// data Nascimento
@@ -553,7 +533,7 @@ public class CadastrarUsuario extends JPanel {
 			String dataTest = dataN.replace("/", "").trim();
 			if (dataTest.length() == 0) {
 				verificarCampo += "Data\n";
-		
+
 			} else {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 				LocalDate dta = LocalDate.parse(dataN, formatter);
@@ -572,7 +552,7 @@ public class CadastrarUsuario extends JPanel {
 			}
 
 		}
-		
+
 		if (funcao == null || funcao.trim() == "" || funcao.isEmpty()) {
 			verificarCampo += "funcao\n";
 
@@ -585,31 +565,28 @@ public class CadastrarUsuario extends JPanel {
 			usuario.setSenha(senha);
 
 		}
-		
-		
+
 		if (cep == null || cep.trim() == "" || cep.isEmpty()) {
 			verificarCampo += "cep\n";
 		} else {
 			endereco.setCep(Integer.valueOf(cep));
 
 		}
-		
+
 		if (cidade == null || cidade.trim() == "" || cidade.isEmpty()) {
 			verificarCampo += "cidade\n";
 		} else {
 			endereco.setCidade(cidade);
 
 		}
-		
-		
+
 		if (bairro == null || cep.trim() == "" || cep.isEmpty()) {
 			verificarCampo += "bairro\n";
 		} else {
 			endereco.setBairro(bairro);
 
 		}
-		
-		
+
 		if (rua == null || rua.trim() == "" || rua.isEmpty()) {
 			verificarCampo += "rua\n";
 		} else {
@@ -622,42 +599,31 @@ public class CadastrarUsuario extends JPanel {
 			endereco.setUf(UF);
 
 		}
-		if(verificarCampo.trim() == "") {
+		if (verificarCampo.trim() == "") {
 			funcionario.setUsuario(usuario);
 			funcionario.setEndereco(endereco);
 			return funcionario;
 		}
-		
+
 		return null;
-		
-		
-		
-		
-		
-		
-		
+
 	}
+
 	public void limparDados() {
-		 txtNome.setText("");
+		txtNome.setText("");
 
-			txtCpf.setText("");
+		txtCpf.setText("");
 
-		
-			 txtEmail.setText("");
+		txtEmail.setText("");
 
-		 txtTelefone.setText("");
-				
+		txtTelefone.setText("");
 
 		txtDataNasci.setText("");
 
-		 txtCep.setText("");
+		txtCep.setText("");
 
-			
+		txtSenha.setText("");
 
-			
-			
-			 txtSenha.setText("");
-			
-			txtBairro.setText("");
+		txtBairro.setText("");
 	}
 }
