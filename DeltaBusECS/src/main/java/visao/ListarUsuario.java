@@ -35,6 +35,23 @@ public class ListarUsuario extends JFrame {
 	private ArrayList<Funcionario> listFuncionario;
 	private JTextField textCPF;
 	
+private void deletarFuncionario() {
+		
+		Long cpf;
+		
+		cpf = Long.parseLong(textCPF.getText());
+		
+		Funcionario objfuncionario = new Funcionario();
+		objfuncionario.setCpf(cpf);
+		
+		FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
+		
+		objfuncionariodao.deletarFuncionario(objfuncionario);
+		
+		
+		
+	}
+	
 	
 /**
 	 * Launch the application.
@@ -104,7 +121,8 @@ public class ListarUsuario extends JFrame {
 		RoundButton rndbtnDeletar = new RoundButton("Limpar Campo");
 		rndbtnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				deletarFuncionario();
+				atualizarTabela();
 			}
 		});
 		rndbtnDeletar.setText("Deletar");

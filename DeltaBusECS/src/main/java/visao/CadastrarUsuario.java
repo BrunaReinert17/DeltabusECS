@@ -66,22 +66,7 @@ public class CadastrarUsuario extends JPanel {
 	private JTextField textRua;
 	private JTextField textField;
 	
-private void deletarFuncionario() {
-		
-		int cpf;
-		
-		cpf = Integer.parseInt(txtCpf.getText());
-		
-		Funcionario objfuncionario = new Funcionario();
-		objfuncionario.setCpf(cpf);
-		
-		FuncionarioDAO objfuncionariodao = new FuncionarioDAO();
-		
-		objfuncionariodao.deletarFuncionario(objfuncionario);
-		
-		
-		
-	}
+
 
 	public CadastrarUsuario() {
 		setLocale("Login");
