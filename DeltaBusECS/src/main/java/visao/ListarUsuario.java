@@ -37,9 +37,9 @@ public class ListarUsuario extends JFrame {
 	
 private void deletarFuncionario() {
 		
-		Long cpf;
+		String cpf;
 		
-		cpf = Long.parseLong(textCPF.getText());
+		cpf = String.valueOf(textCPF.getText());
 		
 		Funcionario objfuncionario = new Funcionario();
 		objfuncionario.setCpf(cpf);
@@ -134,7 +134,7 @@ private void deletarFuncionario() {
 		
 		
 		RoundButton rndbtnConfirmar = new RoundButton("Limpar Campo");
-		rndbtnConfirmar.setText("Confirmar");
+		rndbtnConfirmar.setText("Alterar");
 		rndbtnConfirmar.setForeground(Color.WHITE);
 		rndbtnConfirmar.setFont(new Font("Dialog", Font.BOLD, 16));
 		rndbtnConfirmar.setBackground(new Color(0, 128, 128));
@@ -142,7 +142,7 @@ private void deletarFuncionario() {
 		panel_1.add(rndbtnConfirmar);
 		
 		textCPF = new JTextField();
-		textCPF.setBounds(400, 12, 170, 20);
+		textCPF.setBounds(592, 12, 299, 20);
 		panel_1.add(textCPF);
 		textCPF.setColumns(10);
 

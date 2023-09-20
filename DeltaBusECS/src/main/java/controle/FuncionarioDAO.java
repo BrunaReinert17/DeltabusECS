@@ -45,7 +45,7 @@ public class FuncionarioDAO implements InterfaceFuncionario {
 			String query = "INSERT INTO Funcionarios (cpf, nome, dataNascimento, genero, numerotelefone,Usuario_idUsuario,endereco_cep)values(?,?,?,?,?,?,?);";
 			PreparedStatement stm = c.prepareStatement(query);
 
-			stm.setDouble(1, funcionario.getCpf());
+			stm.setString(1, funcionario.getCpf());
 			stm.setString(2, funcionario.getNome());
 			stm.setDate(3, java.sql.Date.valueOf(funcionario.getDatanasci()));
 			stm.setString(4, funcionario.getGenero());
@@ -73,7 +73,7 @@ public class FuncionarioDAO implements InterfaceFuncionario {
 
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
-			ps.setFloat(1, funcionario.getCpf());
+			ps.setString(1, funcionario.getCpf());
 			ps.executeUpdate();
 
 			c.fecharConexao();
@@ -97,7 +97,7 @@ public class FuncionarioDAO implements InterfaceFuncionario {
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 
-			ps.setDouble(1, funcionario.getCpf());
+			ps.setString(1, funcionario.getCpf());
 			ps.setString(2, funcionario.getNome());
 			ps.setDate(3, java.sql.Date.valueOf(funcionario.getDatanasci()));
 			ps.setString(4, funcionario.getGenero());
@@ -136,7 +136,7 @@ public class FuncionarioDAO implements InterfaceFuncionario {
 
 				endereco.setCep(rs.getInt("endereco_cep"));
 				usuario.setIdUsuario(rs.getLong("Usuario_idUsuario"));
-				funcionario.setCpf(rs.getLong("cpf"));
+				funcionario.setCpf(rs.getString("cpf"));
 				funcionario.setNome(rs.getString("nome"));
 				funcionario.setGenero(rs.getString("genero"));
 				funcionario.setNumeroTelefone(rs.getString("numerotelefone"));

@@ -12,7 +12,7 @@ public class Funcionario {
 
 	private String numeroTelefone;
 
-	private long cpf;
+	private String cpf;
 
 	private Endereco endereco;
 
@@ -24,7 +24,7 @@ public class Funcionario {
 		super();
 	}
 
-	public Funcionario(String nome, LocalDate datanasci, String genero, String numeroTelefone, long cpf,
+	public Funcionario(String nome, LocalDate datanasci, String genero, String numeroTelefone, String cpf,
 			Endereco endereco, Usuario usuario) {
 
 		super();
@@ -97,13 +97,13 @@ public class Funcionario {
 		this.numeroTelefone = numeroTelefone;
 
 	}
-	public long getCpf() {
+	public String getCpf() {
 
 		return cpf;
 
 	}
 
-	public void setCpf(long cpf) {
+	public void setCpf(String cpf) {
 
 		this.cpf = cpf;
 

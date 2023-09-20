@@ -79,11 +79,6 @@ public class CadastrarUsuario extends JPanel {
 		setBackground(new Color(245, 245, 245));
 		setLayout(null);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(CadastrarUsuario.class.getResource("/imagens/icone editar.png")));
-		lblNewLabel_2.setBounds(991, 82, 85, 65);
-		add(lblNewLabel_2);
-		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(CadastrarUsuario.class.getResource("/imagens/Icone4.png")));
 		lblNewLabel_1.setBounds(1035, 82, 110, 43);
@@ -373,55 +368,31 @@ public class CadastrarUsuario extends JPanel {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Funcionario funcionario = verificarDados();
-				
 				Usuario usuario = new Usuario();
-				if (funcionario == null ) {
-					JOptionPane.showMessageDialog(txtCpf, verificarCampo, "Dados inválidos:",
-							JOptionPane.ERROR_MESSAGE, null);
-
-				}else {
-					FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-					EnderecoDAO enderecoDAO = new EnderecoDAO();
-					UsuarioDAO usuarioDAO = new UsuarioDAO();
-					Endereco endereco = enderecoDAO.consultandoEndereco(funcionario.getEndereco());
-					System.out.println(22);
-					boolean ende = false;
-					if(endereco== null) {
-						 ende = enderecoDAO.inserirEndereco(funcionario.getEndereco());
-					}
-					
-					boolean usuarioRetornoCadastro = false;
-					
-
-
-					if(ende != false) {
-						
-						usuarioRetornoCadastro = usuarioDAO.inserirUsuario(funcionario.getUsuario());
-						System.out.println(funcionario.getUsuario());
-						
-						if(usuarioRetornoCadastro!=false) {
-							 usuario  = usuarioDAO.selecionar(funcionario.getUsuario());
-							 System.out.println(usuario);
-							 funcionario.setUsuario(usuario);
-							boolean resultado = funcionarioDAO.inserirFuncionario(funcionario);
-							if(resultado = true) {
-								JOptionPane.showMessageDialog(null, "Cadastrado");
-								limparDados();
-							}else {
-								JOptionPane.showMessageDialog(null,"ErrO");
-							}
-						}
-						
-					}else {
-						JOptionPane.showMessageDialog(null, "Erro");
-					}
-						
-					
+				String erros = "";
 				
+				String nome = txtNome.getText();
+				String datanasci = txtDataNasci.getText();
+				String genero = (String) cbGenero.getSelectedItem();
+				String Telefone = txtTelefone.getText().replace(".","").replace("-", "");
+				String cpf = txtCpf.getText().replace(".","").replace("-", "");
+				String enderecoCep = txtCep.getText().replace("-","");
+				usuario = setarObjetoUsuario();
+				
+				Funcionario funcionario = new Funcionario();
+				
+				if(nome == null || nome.trim() == "" || nome.isEmpty()) {
+					erros += "nome\n";
+				}
+				else {
+					funcionario.setNome(nome);
 				}
 				
-				
+			}
+
+			private Usuario setarObjetoUsuario() {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		});
 		btnCadastrar.setForeground(Color.WHITE);
@@ -488,14 +459,6 @@ public class CadastrarUsuario extends JPanel {
 		rndbtnConfirmar.setBackground(new Color(0, 0, 0));
 		rndbtnConfirmar.setBounds(607, 641, 132, 33);
 		add(rndbtnConfirmar);
-		
-		RoundButton btnAlterar = new RoundButton("Limpar Campo");
-		btnAlterar.setText("");
-		btnAlterar.setForeground(Color.WHITE);
-		btnAlterar.setFont(new Font("Dialog", Font.BOLD, 14));
-		btnAlterar.setBackground(new Color(245, 245, 245));
-		btnAlterar.setBounds(1017, 82, 59, 43);
-		add(btnAlterar);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -561,7 +524,7 @@ public class CadastrarUsuario extends JPanel {
 		if (cpfTxt == null || cpfTxt.trim() == "" || cpfTxt.isEmpty()) {
 			verificarCampo += "CPF\n";
 		} else {
-			long cpf = Long.parseLong(cpfTxt);		
+			String cpf = String.valueOf(cpfTxt);		
 			funcionario.setCpf(cpf);
 		}
 		if (email == null || email.trim() == "" || email.isEmpty()) {
