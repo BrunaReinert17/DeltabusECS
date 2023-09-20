@@ -24,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 
 public class ListarUsuario extends JFrame {
 
@@ -31,11 +32,11 @@ public class ListarUsuario extends JFrame {
 	private JTable table;
 	private JPanel panel;
 	private JPanel panel_1;
-	private ArrayList<Funcionario> listFuncionario; 
-
-
-
-	/**
+	private ArrayList<Funcionario> listFuncionario;
+	private JTextField textCPF;
+	
+	
+/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -101,12 +102,18 @@ public class ListarUsuario extends JFrame {
 		panel_1.add(lblNewLabel);
 		
 		RoundButton rndbtnDeletar = new RoundButton("Limpar Campo");
+		rndbtnDeletar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		rndbtnDeletar.setText("Deletar");
 		rndbtnDeletar.setForeground(new Color(0, 0, 0));
 		rndbtnDeletar.setFont(new Font("Dialog", Font.BOLD, 16));
 		rndbtnDeletar.setBackground(new Color(255, 255, 255));
 		rndbtnDeletar.setBounds(1050, 3, 115, 33);
 		panel_1.add(rndbtnDeletar);
+		
 		
 		RoundButton rndbtnConfirmar = new RoundButton("Limpar Campo");
 		rndbtnConfirmar.setText("Confirmar");
@@ -115,6 +122,11 @@ public class ListarUsuario extends JFrame {
 		rndbtnConfirmar.setBackground(new Color(0, 128, 128));
 		rndbtnConfirmar.setBounds(918, 4, 114, 33);
 		panel_1.add(rndbtnConfirmar);
+		
+		textCPF = new JTextField();
+		textCPF.setBounds(400, 12, 170, 20);
+		panel_1.add(textCPF);
+		textCPF.setColumns(10);
 
 		atualizarTabela();
 	}

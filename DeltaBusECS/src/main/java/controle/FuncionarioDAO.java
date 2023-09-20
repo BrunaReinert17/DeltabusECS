@@ -69,7 +69,7 @@ public class FuncionarioDAO implements InterfaceFuncionario {
 		Conexao c = Conexao.getInstacia();
 		Connection con = c.conectar();
 
-		String query = "DELETE FROM Funcionario\r\n  WHERE Cep = ?";
+		String query = "DELETE FROM funcionarios\r\n  WHERE cpf = ?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
