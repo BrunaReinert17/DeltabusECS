@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -76,6 +77,11 @@ public class CadastrarUsuario extends JPanel {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setBackground(new Color(245, 245, 245));
 		setLayout(null);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(CadastrarUsuario.class.getResource("/imagens/icone editar.png")));
+		lblNewLabel_2.setBounds(974, 89, 98, 58);
+		add(lblNewLabel_2);
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(CadastrarUsuario.class.getResource("/imagens/Icone4.png")));
@@ -444,11 +450,44 @@ public class CadastrarUsuario extends JPanel {
 		rndbtnConfirmar.setBackground(new Color(0, 0, 0));
 		rndbtnConfirmar.setBounds(607, 641, 132, 33);
 		add(rndbtnConfirmar);
+		
+	//	JButton btnAlterar = new RoundButton("Alterar");
+	//	btnAlterar.addActionListener(new ActionListener() {
+			
+			
+		//	public void actionPerfomed(ActionEvent e) {
+				
+			//	btnAlterar.setVisible(false);
+		//		contentPane.remove(btnAlterar);
+				
+				txtCpf.setEditable(false);
+				Locale position = JPanel.getDefaultLocale();
+				
+				String erros = "";
+				
+		//		if(position == -1) {
+			//		JOptionPane.showConfirmDialog(btnAlterar, "Nenhum usuario selecionado");
+			//		contentPane.add(btnAlterar);
+			//		btnAlterar.setVisible(true);
+				}
+		//	}
+		//});
+		
+		
+		
+		
+		
+		
+	//	btnAlterar.setForeground(Color.WHITE);
+	//	btnAlterar.setText("");
+	//	btnAlterar.setBackground(new Color(245, 245, 245));
+	//	btnAlterar.setBounds(1005, 82, 59, 43);
+		//add(btnAlterar);
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	//	setContentPane(contentPane);
+	//	contentPane.setLayout(null);
 
-	}
+	//}
 
 	private void setLocale(String string) {
 
