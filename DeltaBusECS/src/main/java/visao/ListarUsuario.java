@@ -145,6 +145,16 @@ private void deletarFuncionario() {
 		textCPF.setBounds(592, 12, 299, 20);
 		panel_1.add(textCPF);
 		textCPF.setColumns(10);
+		
+		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String cpfpesquisa = textCPF.getText();
+				atualizarTabela();
+			}
+		});
+		btnPesquisar.setBounds(393, 11, 89, 23);
+		panel_1.add(btnPesquisar);
 
 		atualizarTabela();
 	}
