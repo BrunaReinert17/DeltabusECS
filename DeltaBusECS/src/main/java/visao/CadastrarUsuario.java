@@ -388,8 +388,8 @@ public class CadastrarUsuario extends JPanel {
 				}
 			}
 			private Usuario setarObjetoUsuario() {
-				// TODO Auto-generated method stub
-				return Usuario;
+				Usuario usuario = new Usuario();
+				return usuario;
 			}
 		});
 		btnCadastrar.setForeground(Color.WHITE);
