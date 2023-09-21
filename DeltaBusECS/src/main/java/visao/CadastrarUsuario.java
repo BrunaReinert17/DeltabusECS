@@ -451,7 +451,7 @@ public class CadastrarUsuario extends JPanel {
 		rndbtnConfirmar.setBounds(607, 641, 132, 33);
 		add(rndbtnConfirmar);
 		
-	//	JButton btnAlterar = new RoundButton("Alterar");
+		JButton btnAlterar = new RoundButton("Alterar");
 	//	btnAlterar.addActionListener(new ActionListener() {
 			
 			
