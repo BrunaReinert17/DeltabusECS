@@ -62,7 +62,7 @@ public class ClienteDAO implements InterfaceCliente {
 		int valida = 0;
 
 		try {
-			String query = "INSERT INTO Clientes(Nome, numeroTelefone, email, cpf, cnpj, endereco_cep) VALUES (?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO Cliente(Nome, numeroTelefone, email, cpf, cnpj, endereco_cep) VALUES (?, ?, ?, ?, ?, ?)";
 			PreparedStatement stm = c.prepareStatement(query);
 			
 			stm.setString(1, cliente.getNome());
@@ -110,15 +110,14 @@ public class ClienteDAO implements InterfaceCliente {
 		Conexao c = Conexao.getInstacia();
 		Connection con = c.conectar();
 
-		String query = "UPDATE Cliente\r\n   SET" + "nome = ?\r\n" + "numeroTelefone = ?" + "email = ?" + "cnpj = ?"
-				+ " endereco = ?,  WHERE cpf = ?";
+String query = "UPDATE Cliente SET nome = ?, numeroTelefone = ?, email = ?, cnpj = ?, endereco_cep = ? WHERE cpf = ?";
 		try {
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.setString(1, cliente.getNome());
 			ps.setLong(2, cliente.getNumeroTelefone());
 			ps.setString(3, cliente.getEmail());
-			ps.setLong(3, cliente.getCnpj());
-			ps.setLong(4, cliente.getEndereco().getCep());
+			ps.setLong(4, cliente.getCnpj());
+			ps.setLong(5, cliente.getEndereco().getCep());
 
 			ps.executeUpdate();
 
