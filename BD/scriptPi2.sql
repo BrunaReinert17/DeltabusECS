@@ -6,13 +6,12 @@ CREATE TABLE `clientes` (
   `Nome` varchar(255) NOT NULL,
   `numeroTelefone` varchar(14) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `cpf` varchar(14) NOT NULL,
   `cnpj` bigint NOT NULL,
   `endereco_cep` bigint NOT NULL,
   PRIMARY KEY (`cnpj`)
 ) ;
 
-INSERT INTO `clientes` VALUES ('bruna','5','brunar@gmail.com','1596857837',6666666666,21346560),('5255','           ','55555','55555555555',55555555555555,55555555);
+INSERT INTO `clientes` VALUES ('bruna','57412567854','brunar@gmail.com',66666666666666,21346560);
 
 CREATE TABLE `endereco` (
   `cep` bigint NOT NULL,
@@ -27,7 +26,7 @@ INSERT INTO `endereco` VALUES (21346560,'Blumenau','Progresso','Rua Ernestine Eh
 
 
 CREATE TABLE `funcionarios` (
-  `cpf` double NOT NULL,
+  `cpf` bigint NOT NULL,
   `nome` varchar(255) NOT NULL,
   `dataNascimento` varchar(45) NOT NULL,
   `genero` varchar(45) NOT NULL,
@@ -60,11 +59,13 @@ CREATE TABLE `usuario` (
    `senha` varchar(45) NOT NULL,
    `email` varchar(45) NOT NULL,
    `cargo` varchar(45) NOT NULL,
+   `imagem` MEDIUMBLOB null,
    PRIMARY KEY (`idUsuario`)
 );
 
 INSERT INTO usuario (senha, email, cargo) VALUES ('abc123', 'bruna@gmail.com', 'funcionario');
 INSERT INTO usuario (senha, email, cargo) VALUES ('abc1234', 'maria@gmail.com', 'administrador');
+INSERT INTO usuario (senha, email, cargo) VALUES ('abc12345', 'aguida@gmail.com', 'funcionario');
 
 
 CREATE TABLE `veiculo` (
@@ -83,8 +84,6 @@ CREATE TABLE `veiculo` (
   `situacao` varchar(45) NOT NULL,
   PRIMARY KEY (`idVeiculo`)
 );
-
-
 INSERT INTO `veiculo` VALUES (1,'Marcopolo','Paradiso G8 1050',100000000,2023,'Ar condicionado, GPS',5,'Azul','Passeio','diesel','ABC123','123456784','Disponivel');
 INSERT INTO `veiculo` VALUES (2,'Scania','AGRALE/MASCA GRANMIDI O',134567.999,2023,'Banheiro',40,'Verde','Turismo','GNC','ABC222','987654321','Novo');
 
@@ -113,7 +112,3 @@ SELECT * FROM Usuario  ORDER BY idUsuario ASC;
 -- Select funcionarios -- 
 SELECT COUNT(*) FROM funcionarios;
 SELECT * FROM funcionarios ORDER BY cpf ASC;
-
-
-
-

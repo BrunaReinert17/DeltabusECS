@@ -13,7 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import utilidades.RoundButton;
 
-public class ErroAlterar extends JFrame {
+public class CadastroErro2 extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lblDadoInvalido;
@@ -21,7 +21,7 @@ public class ErroAlterar extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ErroAlterar (String mensagem) {
+	public CadastroErro2 (String mensagem) {
 		setBackground(new Color(0, 128, 128));
 		setType(Type.UTILITY);
 		setBounds(100, 100, 346, 213);
@@ -40,7 +40,7 @@ public class ErroAlterar extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnOk.setBounds(146, 123, 55, 29);
+		btnOk.setBounds(143, 122, 55, 29);
 		btnOk.setText("OK");
 		btnOk.setForeground(new Color(255, 255, 255));
 		btnOk.setFont(new Font("Dialog", Font.BOLD, 11));
@@ -50,17 +50,18 @@ public class ErroAlterar extends JFrame {
                 dispose(); 
             }
         });
+		
 		contentPane.add(btnOk);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(CadastroErro.class.getResource("/imagem/MensageAviso.png")));
-		lblNewLabel.setBounds(124, -15, 107, 76);
+		lblNewLabel.setIcon(new ImageIcon(CadastroErro1.class.getResource("/imagem/MensageAviso.png")));
+		lblNewLabel.setBounds(121, -16, 105, 78);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblErroAlterar = new JLabel("Erro de alteração, tente novamente!");
-		lblErroAlterar.setFont(new Font("Dialog", Font.BOLD, 13));
-		lblErroAlterar.setForeground(Color.WHITE);
-		lblErroAlterar.setBounds(59, 82, 261, 24);
-		contentPane.add(lblErroAlterar);
+		JLabel lblNewLabel_1 = new JLabel("Veriique os campos e tente novamente!");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setFont(new Font("Dialog", Font.BOLD, 12));
+		lblNewLabel_1.setBounds(50, 85, 240, 14);
+		contentPane.add(lblNewLabel_1);
 	}
 }

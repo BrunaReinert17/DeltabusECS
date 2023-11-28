@@ -1,7 +1,9 @@
 package mensagens;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 
 import utilidades.RoundButton;
 
-public class ErroAlterar extends JFrame {
+public class CamposVazios extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lblDadoInvalido;
@@ -21,7 +23,7 @@ public class ErroAlterar extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ErroAlterar (String mensagem) {
+	public CamposVazios (String mensagem) {
 		setBackground(new Color(0, 128, 128));
 		setType(Type.UTILITY);
 		setBounds(100, 100, 346, 213);
@@ -57,7 +59,7 @@ public class ErroAlterar extends JFrame {
 		lblNewLabel.setBounds(124, -15, 107, 76);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblErroAlterar = new JLabel("Erro de alteração, tente novamente!");
+		JLabel lblErroAlterar = new JLabel("Campos vazios, tente novamente!");
 		lblErroAlterar.setFont(new Font("Dialog", Font.BOLD, 13));
 		lblErroAlterar.setForeground(Color.WHITE);
 		lblErroAlterar.setBounds(59, 82, 261, 24);

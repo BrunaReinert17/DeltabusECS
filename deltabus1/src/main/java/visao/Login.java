@@ -1,41 +1,29 @@
 package visao;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import utilidades.RoundButton;
-import utilidades.RoundedPanel;
-
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.UIManager;
-import javax.swing.JPasswordField;
-import java.awt.SystemColor;
-import javax.swing.ImageIcon;
-import java.awt.Toolkit;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.SoftBevelBorder;
-
 import controle.UsuarioDAO;
+import mensagens.CadastroSucesso;
 import mensagens.LoginErro;
 import mensagens.LoginErro1;
 import modelo.Usuario;
-
-import javax.swing.border.BevelBorder;
-import javax.swing.DropMode;
-import javax.swing.SwingConstants;
-import javax.swing.JComboBox;
+import utilidades.RoundButton;
+import utilidades.RoundedPanel;
 
 public class Login extends JFrame {
 
@@ -70,7 +58,7 @@ public class Login extends JFrame {
 	public Login() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/imagem/logoampliada.png")));
 		setExtendedState(MAXIMIZED_BOTH);
-		setTitle("Login");
+		setTitle("Entrar");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 2000, 1400);
 		contentPane = new JPanel();
@@ -89,7 +77,7 @@ public class Login extends JFrame {
 		contentPane.add(panel1);
 		panel1.setLayout(null);
 
-		btnNewButton = new RoundButton("Login");
+		btnNewButton = new RoundButton("Entrar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -99,21 +87,27 @@ public class Login extends JFrame {
 				usuario.setEmail(email);
 				usuario.setSenha(senha);
 
-				UsuarioDAO usuarioDAO = new UsuarioDAO();
+				UsuarioDAO usuarioDAO = UsuarioDAO.getInstancia();
 				Usuario retorno = usuarioDAO.consultarLogin(usuario);
 
 				if (!email.isEmpty() && !senha.isEmpty()) {
 
 					if (retorno != null) {
 						if (retorno.getCargo().equalsIgnoreCase("administrador")) {
-							MenuAdmin telaPrincipal = new MenuAdmin();
+							MenuAdmin telaPrincipal = new MenuAdmin(retorno);
 							telaPrincipal.setLocationRelativeTo(null);
 							telaPrincipal.setVisible(true);
+							CadastroSucesso sucesso = new CadastroSucesso("Você entrou com sucesso!");
+							sucesso.setVisible(true);
+							sucesso.setLocationRelativeTo(null);
 							dispose();
 						} else {
-							MenuFuncionario telaFuncionario = new MenuFuncionario();
+							MenuFuncionario telaFuncionario = new MenuFuncionario(retorno);
 							telaFuncionario.setLocationRelativeTo(null);
 							telaFuncionario.setVisible(true);
+							CadastroSucesso sucesso = new CadastroSucesso("Você entrou com sucesso!");
+							sucesso.setVisible(true);
+							sucesso.setLocationRelativeTo(null);
 							dispose();
 						}
 
@@ -146,12 +140,12 @@ public class Login extends JFrame {
 
 		lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon(Login.class.getResource("/imagem/titulo2.png")));
-		lblNewLabel_2.setBounds(-361, 76, 734, 114);
+		lblNewLabel_2.setBounds(-362, 76, 734, 114);
 		panel1.add(lblNewLabel_2);
 
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/imagem/logo.png")));
-		lblNewLabel.setBounds(-361, 66, 916, 150);
+		lblNewLabel.setBounds(-362, 61, 916, 150);
 		panel1.add(lblNewLabel);
 
 		txtSenha = new JPasswordField();

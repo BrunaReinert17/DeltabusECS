@@ -1,14 +1,23 @@
 package modelo;
 
+import java.sql.Blob;
+
 public class Usuario {
 
 	private long idUsuario;
 	private String email;
 	private String senha;
 	private String cargo;
+	private Blob arquivoImagem;
 
-	
-	
+	public Blob getArquivoImagem() {
+		return arquivoImagem;
+	}
+
+	public void setArquivoImagem(Blob arquivoImagem) {
+		this.arquivoImagem = arquivoImagem;
+	}
+
 	public Usuario() {
 		super();
 	}
@@ -60,5 +69,4 @@ public class Usuario {
 	}
 
 
-	
 }

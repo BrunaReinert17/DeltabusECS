@@ -10,12 +10,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,17 +24,15 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
-
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 import controle.EnderecoDAO;
 import controle.FuncionarioDAO;
 import controle.UsuarioDAO;
-import mensagens.ErroVeiculo;
-import mensagens.InterfaceMensagemConfirmacao;
 import mensagens.AlteraSucesso;
 import mensagens.CadastroErro;
 import mensagens.CadastroErro1;
@@ -42,21 +41,11 @@ import mensagens.ConfirmacaoDeletarUsuario;
 import mensagens.DeletarUsuario1;
 import mensagens.DeletarUsuario2;
 import mensagens.ErroAlterar;
-import mensagens.Limpar;
-import mensagens.ListagemErro;
-import mensagens.LoginErro;
+import mensagens.InterfaceMensagemConfirmacao;
 import modelo.Endereco;
 import modelo.Funcionario;
-
 import modelo.Usuario;
 import utilidades.RoundButton;
-
-import javax.swing.AbstractButton;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.event.AncestorListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.event.AncestorEvent;
-import javax.swing.ImageIcon;
 
 public class CadastrarUsuario extends JPanel {
 	private JTextField txtNome;
@@ -82,11 +71,11 @@ public class CadastrarUsuario extends JPanel {
 	private JLabel lblFuncao;
 	private JButton bntDeletar;
 	private JButton btnCadastrar;
+	private JButton btnSalvar1;
 	private JTextField txtDataNasci;
-	// Variaveis atribuidas
 	private String verificarCampo;
-	private JLabel txtRua;
-	private JTextField textRua;
+	private JLabel lblRua;
+	private JTextField txtRua;
 	private JTextField textField;
 	private JLabel lblLimpar;
 	private JPanel panel;
@@ -94,13 +83,11 @@ public class CadastrarUsuario extends JPanel {
 	private JPanel panel_1;
 	private JTextField textCPF;
 	private JButton voltar;
-	private AbstractButton btnSalvar;
 	private String validacao = "";
 	private Funcionario funcionarioClick;
 	private ArrayList<Funcionario> listFunc;
 	private RoundButton rndbtnSalvar;
 	private ArrayList<Usuario> listUsuario;
-	private Usuario UsuarioSelecionado;
 	private Funcionario funcionarioSelecionado;
 	private UsuarioDAO usuarioDao;
 	private FuncionarioDAO funcionarioDao;
@@ -112,6 +99,8 @@ public class CadastrarUsuario extends JPanel {
 	private JTable table_1;
 	private JPanel panel_5;
 	private ArrayList<Funcionario> listFuncionario;
+	private Usuario usuarioSelecionado;
+	private JLabel lblNewLabel_1;
 
 	public CadastrarUsuario() {
 		setLocale("Login");
@@ -180,6 +169,11 @@ public class CadastrarUsuario extends JPanel {
 		btnPesquisar.setBounds(362, 10, 115, 23);
 		panel_1.add(btnPesquisar);
 
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(CadastrarUsuario.class.getResource("/imagem/deletar.png")));
+		lblNewLabel_1.setBounds(1105, 92, 75, 33);
+		add(lblNewLabel_1);
+
 		panel_4 = new JPanel();
 		panel_4.setBackground(new Color(220, 220, 220));
 		panel_4.setBounds(153, 419, 882, 234);
@@ -194,11 +188,11 @@ public class CadastrarUsuario extends JPanel {
 		table_1.setBackground(Color.WHITE);
 		scrollPane_2.setViewportView(table_1);
 		table_1.setModel(new DefaultTableModel(new Object[][] {},
-				new String[] { "Nome", "Email", "Cpf", "Telefone", "Data de Nascimento", "Gênero", "Endereço" }));
+				new String[] { "Nome", "Email", "Cpf", "Telefone", "Data de Nascimento", "Gênero", "CEP" }));
 		scrollPane_2.setViewportView(table_1);
 
 		lblLimpar = new JLabel("");
-		lblLimpar.setBounds(1035, 92, 110, 33);
+		lblLimpar.setBounds(986, 92, 110, 33);
 		lblLimpar.setBackground(new Color(245, 245, 245));
 		lblLimpar.setIcon(new ImageIcon(CadastrarUsuario.class.getResource("/imagem/Icone4.png")));
 		add(lblLimpar);
@@ -253,22 +247,16 @@ public class CadastrarUsuario extends JPanel {
 		lblCpf1.setBounds(714, 157, 46, 14);
 		lblCpf1.setFont(new Font("Dialog", Font.BOLD, 13));
 		add(lblCpf1);
-		/**********/
-		MaskFormatter mascaraCpf = null;
-		try {
-			mascaraCpf = new MaskFormatter("###.###.###-##");
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
-		txtCpf = new JFormattedTextField(mascaraCpf);
+
+		txtCpf = new JFormattedTextField();
 		txtCpf.setBounds(714, 176, 132, 30);
 		txtCpf.setText("");
 		txtCpf.setFont(new Font("Dialog", Font.BOLD, 13));
-		/**********/
 		txtCpf.setBackground(new Color(255, 255, 255));
 		txtCpf.setForeground(new Color(0, 0, 0));
 		txtCpf.setColumns(10);
 		add(txtCpf);
+
 		JLabel lblTelefone = new JLabel("Telefone:");
 		lblTelefone.setBounds(153, 239, 98, 14);
 		lblTelefone.setFont(new Font("Dialog", Font.BOLD, 18));
@@ -277,11 +265,11 @@ public class CadastrarUsuario extends JPanel {
 		/**********/
 		MaskFormatter mascaraTelefone = null;
 		try {
-			mascaraCpf = new MaskFormatter("(##)####-####");
+			mascaraTelefone = new MaskFormatter("(##)####-####");
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		txtTelefone = new JFormattedTextField(mascaraCpf);
+		txtTelefone = new JFormattedTextField(mascaraTelefone);
 		txtTelefone.setBounds(153, 257, 132, 30);
 		txtTelefone.setText("");
 		/**********/
@@ -296,11 +284,11 @@ public class CadastrarUsuario extends JPanel {
 		/**********/
 		MaskFormatter mascaraDataDeNascimento = null;
 		try {
-			mascaraCpf = new MaskFormatter("##/##/####");
+			mascaraDataDeNascimento = new MaskFormatter("##/##/####");
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		txtDataNasci = new JFormattedTextField(mascaraCpf);
+		txtDataNasci = new JFormattedTextField(mascaraDataDeNascimento);
 		txtDataNasci.setBounds(900, 177, 135, 29);
 		txtDataNasci.setFont(new Font("Dialog", Font.BOLD, 13));
 		/**********/
@@ -330,11 +318,11 @@ public class CadastrarUsuario extends JPanel {
 		/**********/
 		MaskFormatter mascaraCep = null;
 		try {
-			mascaraCpf = new MaskFormatter("#####-###");
+			mascaraCep = new MaskFormatter("#####-###");
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-		txtCep = new JFormattedTextField(mascaraCpf);
+		txtCep = new JFormattedTextField(mascaraCep);
 		txtCep.setBounds(515, 257, 149, 30);
 		txtCep.setText("");
 		/**********/
@@ -456,7 +444,7 @@ public class CadastrarUsuario extends JPanel {
 		add(lblFuncao);
 
 		btnCadastrar = new RoundButton("Cadastrar");
-		btnCadastrar.setBounds(545, 697, 132, 33);
+		btnCadastrar.setBounds(471, 696, 117, 33);
 		btnCadastrar.setText("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -472,34 +460,31 @@ public class CadastrarUsuario extends JPanel {
 				} else {
 					FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 					EnderecoDAO enderecoDAO = new EnderecoDAO();
-					UsuarioDAO usuarioDAO = new UsuarioDAO();
+					UsuarioDAO usuarioDAO = UsuarioDAO.getInstancia();
 					Endereco endereco = enderecoDAO.listandoEndereco(funcionario.getEndereco());
+
 					System.out.println(endereco);
-					boolean ende = true;
 					if (endereco == null) {
-						ende = enderecoDAO.inserirEndereco(funcionario.getEndereco());
+						long cep = enderecoDAO.inserirEndereco(funcionario.getEndereco());
 					}
-					System.out.println(ende);
 
-					boolean usuarioRetornoCadastro;
-					
-					if (ende != false) {
-						
+					int usuarioRetornoCadastro;
+
+					if (endereco != null) {
+
 						usuarioRetornoCadastro = usuarioDAO.inserirUsuario(funcionario.getUsuario());
-						System.out.println(funcionario.getUsuario());
-						
-						if (usuarioRetornoCadastro) {
-							;
-							usuario = usuarioDAO.selecionar(funcionario.getUsuario());
-							System.out.println(usuario);
-							funcionario.setUsuario(usuario);
-							boolean resultado = funcionarioDAO.inserirFuncionario(funcionario);
 
-							if (resultado = true) {
+						if (usuarioRetornoCadastro != 0) {
+							funcionario.getUsuario().setIdUsuario(usuarioRetornoCadastro);
+							// usuario = usuarioDAO.selecionar(funcionario.getUsuario());
+							// System.out.println(usuario);
+							// funcionario.setUsuario(usuario);
+							long resultado = funcionarioDAO.inserirFuncionario(funcionario);
+
+							if (resultado > 0) {
 								CadastroSucesso sucesso = new CadastroSucesso("Usuário Cadastrado com Sucesso!");
 								sucesso.setLocationRelativeTo(null);
 								sucesso.setVisible(true);
-								limparDados();
 								atualizarTabela();
 
 							} else {
@@ -525,10 +510,10 @@ public class CadastrarUsuario extends JPanel {
 		atualizarTabela();
 
 		JButton btnLimparCampo = new RoundButton("Limpar Campo");
-		btnLimparCampo.setBounds(1061, 92, 84, 33);
+		btnLimparCampo.setBounds(1048, 92, 41, 33);
 		btnLimparCampo.setText("");
 		btnLimparCampo.setBackground(new Color(245, 245, 245));
-		btnLimparCampo.setForeground(Color.WHITE);
+		btnLimparCampo.setForeground(new Color(245, 245, 245));
 		btnLimparCampo.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnLimparCampo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -540,7 +525,7 @@ public class CadastrarUsuario extends JPanel {
 				txtCep.setText("");
 				txtSenha.setText("");
 				txtBairro.setText("");
-				textRua.setText("");
+				txtRua.setText("");
 				cbUf.setSelectedIndex(-1);
 				cbCidade.setSelectedIndex(-1);
 				cbFuncao.setSelectedIndex(-1);
@@ -553,41 +538,27 @@ public class CadastrarUsuario extends JPanel {
 		lblGnero_1.setBounds(342, 239, 98, 14);
 		lblGnero_1.setFont(new Font("Dialog", Font.BOLD, 13));
 		add(lblGnero_1);
-		txtRua = new JLabel("Rua:");
-		txtRua.setBounds(405, 321, 155, 14);
+		lblRua = new JLabel("Rua:");
+		lblRua.setBounds(405, 321, 155, 14);
+		lblRua.setFont(new Font("Dialog", Font.BOLD, 13));
+		add(lblRua);
+		txtRua = new JTextField();
+		txtRua.setBounds(405, 339, 188, 31);
 		txtRua.setFont(new Font("Dialog", Font.BOLD, 13));
+		txtRua.setColumns(10);
 		add(txtRua);
-		textRua = new JTextField();
-		textRua.setBounds(405, 339, 188, 31);
-		textRua.setFont(new Font("Dialog", Font.BOLD, 13));
-		textRua.setColumns(10);
-		add(textRua);
 
 		RoundButton rndbtnAlterar = new RoundButton("Alterar");
 		rndbtnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-					}
-				});
 
-			
-				
+			}
+		});
+
 		panel_5 = new JPanel();
 		panel_5.setBackground(new Color(0, 0, 0));
 		panel_5.setBounds(148, 411, 893, 249);
 		add(panel_5);
-
-		JButton btnPesquisar_1 = new JButton("Pesquisar");
-		btnPesquisar_1.setForeground(Color.WHITE);
-		btnPesquisar_1.setFont(new Font("Dialog", Font.BOLD, 16));
-		btnPesquisar_1.setBackground(new Color(0, 128, 128));
-		btnPesquisar_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String cpfpesquisa = txtCpf.getText();
-			}
-		});
-		btnPesquisar_1.setBounds(148, 385, 115, 23);
-		add(btnPesquisar_1);
 
 		RoundButton rndbtnDeletar_1 = new RoundButton("Deletar");
 		rndbtnDeletar_1.addActionListener(new ActionListener() {
@@ -608,7 +579,7 @@ public class CadastrarUsuario extends JPanel {
 										model.removeRow(linhaSelecionada);
 
 									} else {
-										DeletarUsuario1 falha = new DeletarUsuario1("Falha ao excluir veiculo");
+										DeletarUsuario1 falha = new DeletarUsuario1("Falha ao excluir");
 										falha.setLocationRelativeTo(null);
 										falha.setVisible(true);
 									}
@@ -622,6 +593,7 @@ public class CadastrarUsuario extends JPanel {
 
 							});
 					confirmar.setVisible(true);
+			        confirmar.setLocationRelativeTo(null);
 
 				} else {
 					DeletarUsuario2 falha2 = new DeletarUsuario2("Selecione um veiculo para excluir");
@@ -630,12 +602,121 @@ public class CadastrarUsuario extends JPanel {
 				}
 			}
 		});
-		rndbtnDeletar_1.setText("Deletar");
-		rndbtnDeletar_1.setForeground(Color.BLACK);
+		rndbtnDeletar_1.setText("");
+		rndbtnDeletar_1.setForeground(new Color(245, 245, 245));
 		rndbtnDeletar_1.setFont(new Font("Dialog", Font.BOLD, 16));
-		rndbtnDeletar_1.setBackground(Color.WHITE);
-		rndbtnDeletar_1.setBounds(920, 92, 115, 33);
+		rndbtnDeletar_1.setBackground(new Color(245, 245, 245));
+		rndbtnDeletar_1.setBounds(1120, 92, 41, 33);
 		add(rndbtnDeletar_1);
+
+		RoundButton btnAlterar = new RoundButton("Alterar");
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/***
+				 * selecionar registro
+				 */
+				int pos = table_1.getSelectedRow();
+				System.out.println(pos);
+				funcionarioSelecionado = listFuncionario.get(pos);
+
+				/*
+				 * preencher os campo
+				 * 
+				 */
+
+				txtNome.setText(funcionarioSelecionado.getNome());
+				txtCpf.setText(funcionarioSelecionado.getCpf());
+				cbGenero.setSelectedItem(funcionarioSelecionado.getGenero());
+				txtEmail.setText(funcionarioSelecionado.getEmail());
+				txtTelefone.setText(funcionarioSelecionado.getNumeroTelefone());
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+				txtDataNasci.setText(funcionarioSelecionado.getDatanasci().format(formatter));
+				txtCep.setText(Long.toString(funcionarioSelecionado.getEndereco().getCep()));
+				cbUf.setSelectedItem(funcionarioSelecionado.getEndereco().getUf());
+				cbFuncao.setSelectedItem(funcionarioSelecionado.getUsuario().getCargo());
+				cbCidade.setSelectedItem(funcionarioSelecionado.getEndereco().getCidade());
+				txtSenha.setText(funcionarioSelecionado.getUsuario().getSenha());
+				txtBairro.setText(String.valueOf(funcionarioSelecionado.getEndereco().getBairro()));
+				txtRua.setText(String.valueOf(funcionarioSelecionado.getEndereco().getRua()));
+
+				/*
+				 * ocutar botaocadastro aparecer botao salvar
+				 * 
+				 * 
+				 */
+				btnSalvar1.setVisible(true);
+				btnCadastrar.setVisible(false);
+				System.out.println("erro");
+
+			}
+		});
+		btnAlterar.setForeground(Color.WHITE);
+		btnAlterar.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnAlterar.setBackground(new Color(0, 0, 0));
+		btnAlterar.setBounds(655, 696, 116, 33);
+		add(btnAlterar);
+
+		btnSalvar1 = new RoundButton("Salvar");
+		btnSalvar1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * Pegar dado do componente da tela
+				 **/
+
+				Funcionario funcionario = verificarDados();
+
+				funcionario.getUsuario().setIdUsuario(funcionarioSelecionado.getUsuario().getIdUsuario());
+
+				if (funcionario != null) {
+					/*
+					 * salvar alteracao no banco
+					 **/
+
+					EnderecoDAO enderecoDAO = new EnderecoDAO();
+					Endereco endereco = enderecoDAO.listandoEndereco(funcionario.getEndereco());
+
+					if (endereco == null) {
+						long cep = enderecoDAO.inserirEndereco(funcionario.getEndereco());
+					}
+
+					FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
+					boolean resultado = funcionarioDAO.alterarFuncionario(funcionario);
+
+					UsuarioDAO usuario = UsuarioDAO.getInstancia();
+					usuario.alterarUsuario(funcionario.getUsuario());
+					/*
+					 * Atualizar tabela
+					 **/
+					atualizarTabela();
+					/*
+					 * Ocular salvar e motrar cadastrar
+					 **/
+					btnSalvar1.setVisible(false);
+					btnCadastrar.setVisible(true);
+
+					if (resultado == true) {
+
+						AlteraSucesso alterar = new AlteraSucesso("Usuário alterado com Sucesso!");
+						alterar.setLocationRelativeTo(null);
+						alterar.setVisible(true);
+						atualizarTabela();
+						limparDados(); // Limpa os campos após o cadastro
+					} else {
+						ErroAlterar erro1 = new ErroAlterar("Erro de alteração, tente novamente!");
+						erro1.setLocationRelativeTo(null);
+						erro1.setVisible(true);
+					}
+				}
+
+			}
+		});
+		btnSalvar1.setText("Salvar");
+		btnSalvar1.setForeground(Color.WHITE);
+		btnSalvar1.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnSalvar1.setBackground(new Color(0, 128, 128));
+		btnSalvar1.setBounds(471, 696, 116, 33);
+		btnSalvar1.setVisible(false);
+		add(btnSalvar1);
 		atualizarTabela();
 
 	}
@@ -686,7 +767,7 @@ public class CadastrarUsuario extends JPanel {
 		String senha = txtSenha.getText();
 		String bairro = txtBairro.getText();
 		String cidade = (String) cbCidade.getSelectedItem();
-		String rua = txtRua.getText();
+		String rua = lblRua.getText();
 
 		if (nome == null || nome.trim() == "" || nome.isEmpty()) {
 			verificarCampo += "Nome\n";
@@ -741,6 +822,7 @@ public class CadastrarUsuario extends JPanel {
 		} else {
 			usuario.setCargo(funcao);
 		}
+
 		if (senha == null || senha.trim() == "" || senha.isEmpty()) {
 			verificarCampo += "senha\n";
 		} else {
@@ -784,14 +866,15 @@ public class CadastrarUsuario extends JPanel {
 
 	public void atualizarTabela() {
 		DefaultTableModel tabela = new DefaultTableModel(new Object[][] {},
-				new String[] { "Nome", "Cpf", "Telefone", "Data de Nascimento", "Genero", "Endereço" });
+				new String[] { "Nome", "Email", "Cpf", "Telefone", "Data de Nascimento", "Genero", "CEP" });
 		FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
 		listFuncionario = funcionarioDAO.consultarTodos();
 		System.out.println(listFuncionario);
 		for (int i = 0; i < listFuncionario.size(); i++) {
 			Funcionario funcionario = listFuncionario.get(i);
-			tabela.addRow(new Object[] { funcionario.getNome(), funcionario.getCpf(), funcionario.getNumeroTelefone(),
-					funcionario.getDatanasci(), funcionario.getGenero(), funcionario.getEndereco().getCep() });
+			tabela.addRow(new Object[] { funcionario.getNome(), funcionario.getEmail(), funcionario.getCpf(),
+					funcionario.getNumeroTelefone(), funcionario.getDatanasci(), funcionario.getGenero(),
+					funcionario.getEndereco().getCep() });
 
 		}
 		table_1.setModel(tabela);
@@ -806,5 +889,10 @@ public class CadastrarUsuario extends JPanel {
 		txtCep.setText("");
 		txtSenha.setText("");
 		txtBairro.setText("");
+		txtRua.setText("");
+		cbUf.setSelectedIndex(-1);
+		cbCidade.setSelectedIndex(-1);
+		cbFuncao.setSelectedIndex(-1);
+		cbGenero.setSelectedIndex(-1);
 	}
 }
